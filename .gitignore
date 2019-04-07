@@ -1,0 +1,7 @@
+.idea/*
+*.iml
+out/*
+target/*
+classes/*
+node_modules/*
+solutions/*
