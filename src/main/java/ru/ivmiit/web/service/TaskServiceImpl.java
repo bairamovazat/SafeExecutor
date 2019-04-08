@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.ivmiit.executor.Executor;
+import ru.ivmiit.executor.ExecutorCmd;
 import ru.ivmiit.web.forms.SolutionForm;
 import ru.ivmiit.web.forms.SolutionStatus;
 import ru.ivmiit.web.forms.TaskForm;
@@ -21,7 +21,6 @@ import ru.ivmiit.web.utils.TaskUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -101,7 +100,7 @@ public class TaskServiceImpl implements TaskService {
         Solution solution = Solution.from(solutionForm);
         solution.setTask(task);
         solutionRepository.saveAndFlush(solution);
-
+        ExecutorCmd executorCmd = new ExecutorCmd();
         executorService.submit(() -> {
             //TODO Обязательно оформить адекватно!!!
             try {
@@ -119,7 +118,7 @@ public class TaskServiceImpl implements TaskService {
                 out.close();
 
                 try {
-                    Executor.compileJavaFile(javaFile.getAbsolutePath(), directory.getAbsolutePath());
+                    executorCmd.compileJavaFile(javaFile.getAbsolutePath(), directory.getAbsolutePath());
                 } catch (IllegalArgumentException e) {
                     solution.setStatus(SolutionStatus.COMPILATION_ERROR);
                     solutionRepository.saveAndFlush(solution);
@@ -131,7 +130,7 @@ public class TaskServiceImpl implements TaskService {
                     solution.setCurrentTest(current_test);
                     solutionRepository.saveAndFlush(solution);
 
-                    List<String> result = Executor.runFile(classFilePath, directory.getAbsolutePath(), test.getInputData());
+                    List<String> result = executorCmd.runFile(classFilePath, directory.getAbsolutePath(), test.getInputData());
                     String concatResult = String.join("\n", result);
 
                     if (concatResult.toLowerCase().contains("error:")) {

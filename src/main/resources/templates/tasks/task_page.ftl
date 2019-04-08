@@ -17,7 +17,7 @@
                             <h5 class="card-title text-center">${model.task.name}</h5>
                         </li>
                         <li class="list-group-item text-center">
-                            Время: ${model.task.maxTime! / 1000} сек. Память ${model.task.maxMemory!} КБ.
+                            Время: ${model.task.maxTime! / 1000} сек. Память ${model.task.maxMemory!} MB.
                             Сложность ${model.task.complexity!}
                         </li>
                         <li class="list-group-item">
