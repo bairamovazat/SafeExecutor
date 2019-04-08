@@ -2,7 +2,7 @@
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import ru.ivmiit.executor.Executor;
+import ru.ivmiit.executor.ExecutorCmd;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class ExecutorTest {
+public class ExecutorCmdTest {
 
     public static String workingDir = System.getProperty("user.dir") + "\\src\\test\\java";
     public static String simpleTestName = "SimpleTest";
@@ -51,7 +51,7 @@ public class ExecutorTest {
 
         deleteFileIfExists(absoluteCompiledFileName);
 
-        Executor.compileJavaFile(absoluteJavaFileName, workingDir);
+        ExecutorCmd.compileJavaFile(absoluteJavaFileName, workingDir);
 
     }
 
@@ -59,7 +59,7 @@ public class ExecutorTest {
     void testSimpleCorrectAnswer() throws IOException {
         String testAnswer = "Work!";
         compile(workingDir, simpleTestName);
-        List<String> result = Executor.runFile(simpleTestName, workingDir, "");
+        List<String> result = ExecutorCmd.runFile(simpleTestName, workingDir, "");
         if (result.size() != 1 || !result.get(0).equals(testAnswer)) {
             fail("Результат не верен! Ожидалось \"" + testAnswer + "\". Получено \"" + result.get(0) + "\"");
         }
@@ -69,7 +69,7 @@ public class ExecutorTest {
     void testSumCorrectAnswer() throws IOException {
         String testAnswer = "3";
         compile(workingDir, sumTestName);
-        List<String> result = Executor.runFile(sumTestName, workingDir, "1 2");
+        List<String> result = ExecutorCmd.runFile(sumTestName, workingDir, "1 2");
         if (result.size() != 1 || !result.get(0).equals(testAnswer)) {
             fail("Результат не верен! Ожидалось \"" + testAnswer + "\". Получено \"" + result.get(0) + "\"");
         }
@@ -78,12 +78,13 @@ public class ExecutorTest {
     @Test
     @Ignore
     void testTimeOut() throws IOException {
-        String testAnswer = "3";
-        compile(workingDir, infinityTestName);
-        List<String> result = Executor.runFile(infinityTestName, workingDir, "1 2", 500);
-        if (result.size() != 1 || !result.get(0).equals(testAnswer)) {
-            fail("Результат не верен! Ожидалось \"" + testAnswer + "\". Получено \"" + result.get(0) + "\"");
-        }
+        fail();
+//        String testAnswer = "3";
+//        compile(workingDir, infinityTestName);
+//        List<String> result = ExecutorCmd.runFile(infinityTestName, workingDir, "1 2", 500);
+//        if (result.size() != 1 || !result.get(0).equals(testAnswer)) {
+//            fail("Результат не верен! Ожидалось \"" + testAnswer + "\". Получено \"" + result.get(0) + "\"");
+//        }
     }
 
 }

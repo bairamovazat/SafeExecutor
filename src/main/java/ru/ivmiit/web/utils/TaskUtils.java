@@ -3,6 +3,8 @@ package ru.ivmiit.web.utils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TaskUtils {
 
@@ -27,6 +29,16 @@ public class TaskUtils {
             return theDir.getAbsolutePath();
         }else {
             throw new IllegalArgumentException("Path " + relativePath + " not exists");
+        }
+    }
+
+    public static String getTaskStatus(String result){
+        Pattern p = Pattern.compile("Status: [\\w]{0,10}\\n");
+        Matcher m = p.matcher(result);
+        if(m.find()){
+            return m.group(1);
+        }else {
+            return null;
         }
     }
 }

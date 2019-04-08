@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputMaxMemory">Ограничение по памяти в КБ</label>
+                    <label for="inputMaxMemory">Ограничение по памяти в MB</label>
                     <input name="maxMemory" type="number" class="form-control" id="inputMaxMemory" min="1" value="1">
                 </div>
 
