@@ -5,6 +5,7 @@ import ru.ivmiit.web.forms.SolutionForm;
 import ru.ivmiit.web.forms.TaskForm;
 import ru.ivmiit.web.model.Solution;
 import ru.ivmiit.web.model.Task;
+import ru.ivmiit.web.model.User;
 
 import java.util.List;
 
@@ -22,5 +23,5 @@ public interface TaskService {
     Task getTask(Long id);
 
     @Transactional
-    void saveAndCheckSolution(SolutionForm solutionForm);
+    void saveAndCheckSolution(SolutionForm solutionForm, User user);
 }

@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ivmiit.executor.ExecutorCmd;
 import ru.ivmiit.executor.ExecutorEjudge;
@@ -17,6 +19,7 @@ import ru.ivmiit.web.forms.TaskForm;
 import ru.ivmiit.web.model.Solution;
 import ru.ivmiit.web.model.Task;
 import ru.ivmiit.web.model.TaskTest;
+import ru.ivmiit.web.model.User;
 import ru.ivmiit.web.repository.SolutionRepository;
 import ru.ivmiit.web.repository.TaskCategoryRepository;
 import ru.ivmiit.web.repository.TaskRepository;
@@ -47,8 +50,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Autowired
     private SolutionRepository solutionRepository;
-
-    private ExecutorService executorService = Executors.newCachedThreadPool();
 
 
     @Value("${execute.dir}")
@@ -110,33 +111,31 @@ public class TaskServiceImpl implements TaskService {
         return task;
     }
 
+    @Async
     @Override
-    @Transactional
-    public void saveAndCheckSolution(SolutionForm solutionForm) {
+    public void saveAndCheckSolution(SolutionForm solutionForm, User user) {
+        save(solutionForm, user);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void save(SolutionForm solutionForm, User user){
         Task task = getTask(solutionForm.getTaskId());
         Solution solution = Solution.from(solutionForm);
         solution.setTask(task);
-        solution.setAuthor(authenticationService.getCurrentUser());
-        solutionRepository.save(solution);
+        solution.setAuthor(user);
+        saveOnNewTransact(solution);
 
         if(task.getTestList().size() == 0){
             logger.error("Task test size 0: " + task);
             solution.setStatus(SolutionStatus.TEST_ERROR);
-            solutionRepository.save(solution);
+            saveOnNewTransact(solution);
             return;
         }
 
-        executorService.submit(() -> {
-            save(solution, task);
-        });
-    }
-
-    @Transactional
-    public void save(Solution solution, Task task){
         //TODO Обязательно оформить адекватно!!!
         try {
             solution.setStatus(SolutionStatus.PROCESSED);
-            solutionRepository.save(solution);
+            saveOnNewTransact(solution);
 
             String executeDirectory = TaskUtils.getFullPath(executeDir) + "/" + solution.getId();
             File directory = new File(executeDirectory);
@@ -155,7 +154,7 @@ public class TaskServiceImpl implements TaskService {
                         directory.getAbsolutePath());
             } catch (IllegalArgumentException e) {
                 solution.setStatus(SolutionStatus.COMPILATION_ERROR);
-                solutionRepository.save(solution);
+                saveOnNewTransact(solution);
                 return;
             }
 
@@ -163,29 +162,35 @@ public class TaskServiceImpl implements TaskService {
             int current_test = 1;
             for (TaskTest test : task.getTestList()) {
                 solution.setCurrentTest(current_test);
-                solutionRepository.save(solution);
+                saveOnNewTransact(solution);
 
                 ExecutorResult result = executorEjudge.runFile(classFilePath, directory.getAbsolutePath(), test.getInputData(), task.getMaxTime(), task.getMaxMemory(), task.getMaxMemory());
 
                 if(!result.isOk()){
                     solution.setStatusFromString(result.getStatus());
-                    solutionRepository.save(solution);
+                    saveOnNewTransact(solution);
                     return;
                 }else if (!result.resultEquals(test.outputData)) {
                     solution.setStatus(SolutionStatus.WRONG_ANSWER);
-                    solutionRepository.save(solution);
+                    saveOnNewTransact(solution);
                     return;
                 }
             }
             solution.setStatus(SolutionStatus.ACCEPTED);
-            solutionRepository.save(solution);
+            saveOnNewTransact(solution);
             return;
         } catch (IOException ignore) {
             solution.setStatus(SolutionStatus.WRONG_ANSWER);
-            solutionRepository.save(solution);
+            saveOnNewTransact(solution);
             logger.error("Task test IOException: " + task);
         }
     }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void saveOnNewTransact(Solution solution){
+        solutionRepository.saveAndFlush(solution);
+    }
+
     public static void main(String[] args) {
         File file = new File("solutions");
         System.out.println(file.exists());

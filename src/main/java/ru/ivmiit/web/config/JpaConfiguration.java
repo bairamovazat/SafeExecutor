@@ -88,6 +88,8 @@ public class JpaConfiguration {
         jpaProperties.put("hibernate.cache.use_second_level_cache", true);
         jpaProperties.put("hibernate.cache.use_query_cache", true);
         jpaProperties.put("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory");
+        jpaProperties.put("hibernate.show_sql", false);
+
         return jpaProperties;
     }
 }
