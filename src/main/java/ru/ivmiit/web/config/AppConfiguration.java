@@ -3,10 +3,13 @@ package ru.ivmiit.web.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -27,6 +30,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
+@EnableAsync
 @PropertySource("classpath:application.properties")
 @Import({JpaConfiguration.class, SecurityConfig.class})
 @ComponentScan(basePackages = {"ru.ivmiit.web.model", "ru.ivmiit.web.service", "ru.ivmiit.web.controller"})
@@ -55,6 +59,16 @@ public class AppConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/js/**") //
                 .addResourceLocations("/WEB-INF/classes/js/").setCachePeriod(31556926);
 
+    }
+
+    @Bean("threadPoolTaskExecutor")
+    public TaskExecutor getAsyncExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(20);
+        executor.setMaxPoolSize(1000);
+        executor.setWaitForTasksToCompleteOnShutdown(true);
+        executor.setThreadNamePrefix("Async-");
+        return executor;
     }
 
     @Bean

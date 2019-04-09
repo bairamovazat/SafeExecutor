@@ -47,7 +47,7 @@ public class AuthController {
         if (authentication != null) {
             User user = service.getUserByAuthentication(authentication);
             if (user.getRole().equals(Role.USER)) {
-                return "redirect:/user/profile";
+                return "redirect:/profile";
             } else if (user.getRole().equals(Role.ADMIN)) {
                 return "redirect:/admin/users";
             }

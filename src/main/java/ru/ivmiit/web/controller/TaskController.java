@@ -103,6 +103,7 @@ public class TaskController {
     public String createSolution(@Valid @ModelAttribute("solutionForm") SolutionForm solutionForm,
                                  BindingResult errors,
                                  RedirectAttributes attributes,
+                                 Authentication authentication,
                                  @PathVariable("id") Optional<Long> taskId) {
         if (errors.hasErrors()) {
             List<String> errorList = errors.getAllErrors()
@@ -114,7 +115,7 @@ public class TaskController {
         }
 
         try {
-            taskService.saveAndCheckSolution(solutionForm);
+            taskService.saveAndCheckSolution(solutionForm, authenticationService.getUserByAuthentication(authentication));
         }catch (IllegalArgumentException e){
             return "redirect:/";
         }

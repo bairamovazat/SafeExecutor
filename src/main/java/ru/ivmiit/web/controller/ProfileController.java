@@ -24,7 +24,7 @@ public class ProfileController {
     @Autowired
     private SolutionService solutionService;
 
-    @GetMapping("/")
+    @GetMapping
     public String getProfilePage(Authentication authentication, @ModelAttribute("model") ModelMap model) {
         authenticationService.putUserToModelIfExists(authentication, model);
         return "profile/profile";
