@@ -37,7 +37,7 @@
                         <li class="list-group-item">
                             <h6 class="card-subtitle mb-2">Пример входных данных: </h6>
                             <div>
-                                ${model.task.firstTest.outputData!}
+                                ${model.task.firstTest.inputData!}
                             </div>
                         </li>
                         <li class="list-group-item">

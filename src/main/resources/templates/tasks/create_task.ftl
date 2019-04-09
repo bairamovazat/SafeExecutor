@@ -30,17 +30,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputMaxTime">Ограничение времени в мс</label>
+                    <label for="inputMaxTime">Ограничение времени в секундах</label>
                     <input name="maxTime" type="number" class="form-control" id="inputMaxTime" min="1" value="1">
                 </div>
 
                 <div class="form-group">
-                    <label for="inputMaxRealTime">Ограничение реального времени в мс</label>
+                    <label for="inputMaxRealTime">Ограничение реального времени в секундах</label>
                     <input name="maxRealTime" type="number" class="form-control" id="inputMaxRealTime" min="1" value="1">
                 </div>
 
                 <div class="form-group">
-                    <label for="inputMaxMemory">Ограничение по памяти в КБ</label>
+                    <label for="inputMaxMemory">Ограничение по памяти в МБ</label>
                     <input name="maxMemory" type="number" class="form-control" id="inputMaxMemory" min="1" value="1">
                 </div>
 
