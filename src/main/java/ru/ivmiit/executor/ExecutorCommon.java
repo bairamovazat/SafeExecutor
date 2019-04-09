@@ -13,7 +13,7 @@ public abstract class ExecutorCommon implements Executor {
 
     public abstract ProcessBuilder getCompileProcessBuilder(String javaFile, String workingDirectory) throws IOException;
 
-    public void compileJavaFile(String javaFile, String workingDirectory) throws IOException {
+    public ExecutorResult compileJavaFile(String javaFile, String workingDirectory) throws IOException {
         ProcessBuilder builder = getCompileProcessBuilder(javaFile, workingDirectory);
 
         builder.directory(new File(workingDirectory));
@@ -33,18 +33,19 @@ public abstract class ExecutorCommon implements Executor {
             result.add(line);
         }
 
-        EjudgeResult status = EjudgeResult.from(result);
-        if(!Objects.equals(status.getStatus(), "OK")){
+        ExecutorResult status = ExecutorResult.from(result);
+        if(!status.isOk()){
             throw new IllegalArgumentException("Compile Runtime Error! " + status.toString());
         }
+        return status;
     }
 
-    public abstract ProcessBuilder getRunProcessBuilder(String classFile, String workingDirectory, long timeLimitMillis, long realTimeLimitSec, long maxVmSizeMb) throws IOException;
+    public abstract ProcessBuilder getRunProcessBuilder(String classFile, String workingDirectory, long timeLimitMillis, long realTimeLimitSec, long maxStackSizeMb) throws IOException;
 
-    public List<String> runFile(String classFile, String workingDirectory, String inputData, long timeLimitMillis, long realTimeLimitSec, long maxVmSizeMb) throws IOException {
+    public ExecutorResult runFile(String classFile, String workingDirectory, String inputData, long timeLimitMillis, long realTimeLimitSec, long maxStackSizeMb) throws IOException {
         List<String> outputData = new ArrayList<>();
 
-        ProcessBuilder builder = getRunProcessBuilder(classFile, workingDirectory, timeLimitMillis, realTimeLimitSec, maxVmSizeMb);
+        ProcessBuilder builder = getRunProcessBuilder(classFile, workingDirectory, timeLimitMillis, realTimeLimitSec, maxStackSizeMb);
 
         builder.directory(new File(workingDirectory));
         builder.redirectErrorStream(true);
@@ -62,10 +63,11 @@ public abstract class ExecutorCommon implements Executor {
         String line;
         while ((line = r.readLine()) != null) {
             outputData.add(line);
-
         }
         cmdInputReader.close();
-        return outputData;
+        ExecutorResult result = ExecutorResult.from(outputData);
+
+        return result;
     }
 
 }

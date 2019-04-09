@@ -2,6 +2,7 @@ package ru.ivmiit.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import ru.ivmiit.web.model.User;
@@ -16,6 +17,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Override
+    public User getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return getUserByAuthentication(authentication);
+    }
 
     @Override
     public User getUserByAuthentication(Authentication authentication) {

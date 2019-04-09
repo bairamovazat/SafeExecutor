@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "task_test")
 public class TaskTest {
 
     @Id

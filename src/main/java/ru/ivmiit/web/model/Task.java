@@ -12,12 +12,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"testList"})
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(length = 255)
     private String name;
+    @Column(length = 1023)
     private String description;
 
     private Integer maxTime;
@@ -25,7 +27,9 @@ public class Task {
     private Integer maxMemory;
     private Integer complexity;
 
+    @Column(length = 1024)
     private String inputDescription;
+    @Column(length = 1024)
     private String outputDescription;
 
     @OneToMany(mappedBy="task", cascade = CascadeType.ALL)

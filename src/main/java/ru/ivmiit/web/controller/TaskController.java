@@ -119,6 +119,6 @@ public class TaskController {
             return "redirect:/";
         }
 
-        return "redirect:/profile/solutions";
+        return "redirect:/profile/solutions/all";
     }
 }

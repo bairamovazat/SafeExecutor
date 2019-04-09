@@ -14,7 +14,7 @@
 
             <#if model.user.isPresent()>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/profile">Личный кабинет</a>
+                    <a class="nav-link" href="/profile">Личный кабинет</a>
                 </li>
 
                 <li class="nav-item">

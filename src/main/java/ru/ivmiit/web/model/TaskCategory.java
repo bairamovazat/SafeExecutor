@@ -2,10 +2,7 @@ package ru.ivmiit.web.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -13,6 +10,7 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "task_category")
 public class TaskCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

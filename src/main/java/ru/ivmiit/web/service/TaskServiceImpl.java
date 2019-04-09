@@ -1,6 +1,8 @@
 package ru.ivmiit.web.service;
 
 import org.hibernate.Hibernate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ivmiit.executor.ExecutorCmd;
 import ru.ivmiit.executor.ExecutorEjudge;
+import ru.ivmiit.executor.ExecutorResult;
 import ru.ivmiit.web.forms.SolutionForm;
 import ru.ivmiit.web.forms.SolutionStatus;
 import ru.ivmiit.web.forms.TaskForm;
@@ -17,6 +20,7 @@ import ru.ivmiit.web.model.TaskTest;
 import ru.ivmiit.web.repository.SolutionRepository;
 import ru.ivmiit.web.repository.TaskCategoryRepository;
 import ru.ivmiit.web.repository.TaskRepository;
+import ru.ivmiit.web.utils.FileUtils;
 import ru.ivmiit.web.utils.TaskUtils;
 
 import java.io.File;
@@ -29,6 +33,11 @@ import java.util.concurrent.Executors;
 
 @Service
 public class TaskServiceImpl implements TaskService {
+
+    static Logger logger = LoggerFactory.getLogger(TaskService.class.getName());
+
+    @Autowired
+    private AuthenticationService authenticationService;
 
     @Autowired
     private TaskRepository taskRepository;
@@ -48,17 +57,18 @@ public class TaskServiceImpl implements TaskService {
     @Value("${execute.ejudge}")
     private String pathToEjudgeBin;
 
-    private ExecutorEjudge executorEjudge = new ExecutorEjudge(pathToEjudgeBin);
+    private ExecutorEjudge executorEjudge;
 
     private static int pagesCount = 5;
 
-    private static int defaultPageElementCount = 5;
+    private static int defaultPageElementCount = 10;
 
-    public TaskServiceImpl(@Value("${execute.dir}") String executeDir) {
+    public TaskServiceImpl(@Value("${execute.dir}") String executeDir, @Value("${execute.ejudge}") String pathToEjudgeBin) {
         File file = new File(executeDir);
         if (!file.exists()) {
             throw new IllegalArgumentException("Execute dir not exist(" + executeDir + ")!");
         }
+        executorEjudge = new ExecutorEjudge(pathToEjudgeBin);
     }
 
     @Override
@@ -106,60 +116,76 @@ public class TaskServiceImpl implements TaskService {
         Task task = getTask(solutionForm.getTaskId());
         Solution solution = Solution.from(solutionForm);
         solution.setTask(task);
-        solutionRepository.saveAndFlush(solution);
+        solution.setAuthor(authenticationService.getCurrentUser());
+        solutionRepository.save(solution);
+
+        if(task.getTestList().size() == 0){
+            logger.error("Task test size 0: " + task);
+            solution.setStatus(SolutionStatus.TEST_ERROR);
+            solutionRepository.save(solution);
+            return;
+        }
+
         executorService.submit(() -> {
-            //TODO Обязательно оформить адекватно!!!
-            try {
-                String executeDirectory = TaskUtils.getFullPath(executeDir) + "\\" + solution.getId();
-                File directory = new File(executeDirectory);
-                boolean resultDirectory = directory.mkdir();
-
-                File javaFile = new File(executeDirectory + "\\Program.java");
-                boolean resultJavaFile = javaFile.createNewFile();
-
-                String program = solution.getCodeImport() + "\npublic class Program {\n" + solution.getCode() + "\n}";
-
-                PrintWriter out = new PrintWriter(javaFile.getAbsolutePath(), "UTF-8");
-                out.print(program);
-                out.close();
-
-                try {
-                    executorEjudge.compileJavaFile(
-                            javaFile.getAbsolutePath(),
-                            directory.getAbsolutePath());
-                } catch (IllegalArgumentException e) {
-                    solution.setStatus(SolutionStatus.COMPILATION_ERROR);
-                    solutionRepository.saveAndFlush(solution);
-                    return;
-                }
-
-                String classFilePath = "Program";
-                int current_test = 1;
-                for (TaskTest test : task.getTestList()) {
-                    solution.setCurrentTest(current_test);
-                    solutionRepository.saveAndFlush(solution);
-
-                    List<String> result = executorEjudge.runFile(classFilePath, directory.getAbsolutePath(), test.getInputData(), task.getMaxTime(), task.getMaxMemory(), task.getMaxMemory());
-                    String concatResult = String.join("\n", result);
-
-                    if (concatResult.toLowerCase().contains("error:")) {
-                        solution.setStatus(SolutionStatus.WRONG_ANSWER);
-                        solutionRepository.saveAndFlush(solution);
-                        return;
-                    } else if (!concatResult.equals(test.outputData)) {
-                        solution.setStatus(SolutionStatus.WRONG_ANSWER);
-                        solutionRepository.saveAndFlush(solution);
-                        return;
-                    }
-                }
-                solution.setStatus(SolutionStatus.ACCEPTED);
-                solutionRepository.saveAndFlush(solution);
-            } catch (IOException ignore) {
-                System.err.println(ignore.getMessage());
-            }
+            save(solution, task);
         });
     }
 
+    @Transactional
+    public void save(Solution solution, Task task){
+        //TODO Обязательно оформить адекватно!!!
+        try {
+            solution.setStatus(SolutionStatus.PROCESSED);
+            solutionRepository.save(solution);
+
+            String executeDirectory = TaskUtils.getFullPath(executeDir) + "/" + solution.getId();
+            File directory = new File(executeDirectory);
+            boolean resultDirectory = directory.mkdir();
+
+            File javaFile = new File(executeDirectory + "/Program.java");
+            boolean resultJavaFile = javaFile.createNewFile();
+
+            String program = solution.getCodeImport() + "\npublic class Program {\n" + solution.getCode() + "\n}";
+
+            FileUtils.writeToFile(javaFile.getAbsolutePath(), program, true);
+
+            try {
+                executorEjudge.compileJavaFile(
+                        javaFile.getAbsolutePath(),
+                        directory.getAbsolutePath());
+            } catch (IllegalArgumentException e) {
+                solution.setStatus(SolutionStatus.COMPILATION_ERROR);
+                solutionRepository.save(solution);
+                return;
+            }
+
+            String classFilePath = "Program";
+            int current_test = 1;
+            for (TaskTest test : task.getTestList()) {
+                solution.setCurrentTest(current_test);
+                solutionRepository.save(solution);
+
+                ExecutorResult result = executorEjudge.runFile(classFilePath, directory.getAbsolutePath(), test.getInputData(), task.getMaxTime(), task.getMaxMemory(), task.getMaxMemory());
+
+                if(!result.isOk()){
+                    solution.setStatusFromString(result.getStatus());
+                    solutionRepository.save(solution);
+                    return;
+                }else if (!result.resultEquals(test.outputData)) {
+                    solution.setStatus(SolutionStatus.WRONG_ANSWER);
+                    solutionRepository.save(solution);
+                    return;
+                }
+            }
+            solution.setStatus(SolutionStatus.ACCEPTED);
+            solutionRepository.save(solution);
+            return;
+        } catch (IOException ignore) {
+            solution.setStatus(SolutionStatus.WRONG_ANSWER);
+            solutionRepository.save(solution);
+            logger.error("Task test IOException: " + task);
+        }
+    }
     public static void main(String[] args) {
         File file = new File("solutions");
         System.out.println(file.exists());
