@@ -6,6 +6,6 @@ public class SumTest {
         String data = scanner.nextLine();
         int first = Integer.parseInt(data.split(" ")[0]);
         int second = Integer.parseInt(data.split(" ")[1]);
-        System.out.println(first + second);
+        System.out.print(first + second);
     }
 }

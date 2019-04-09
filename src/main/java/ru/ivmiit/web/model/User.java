@@ -24,7 +24,6 @@ public class User {
 
     private UUID uuid;
 
-
     @Column(unique = true)
     private String login;
 

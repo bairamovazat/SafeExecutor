@@ -10,10 +10,13 @@ public class FileUtils {
 
         File commandFile = new File(filePath);
         if(create){
-            commandFile.setWritable(true, true);
-            commandFile.setReadable(true, true);
-            commandFile.setExecutable(true, true);
+            commandFile.setWritable(true, false);
+            commandFile.setReadable(true, false);
+            commandFile.setExecutable(true, false);
             boolean resultJavaFile = commandFile.createNewFile();
+            commandFile.setWritable(true, false);
+            commandFile.setReadable(true, false);
+            commandFile.setExecutable(true, false);
         }
 
         PrintWriter out = new PrintWriter(commandFile.getAbsolutePath(), "UTF-8");

@@ -1,6 +1,5 @@
 package ru.ivmiit.executor;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -11,29 +10,38 @@ import java.util.regex.Pattern;
 
 @Data
 @Builder
-@ToString(exclude = {"allText"})
-public class EjudgeResult {
-    public String status;
-    public Long cpuTime;
-    public Long realTime;
-    public Long vmSize;
-    public String description;
-    public Integer exitCode;
+@ToString
+public class ExecutorResult {
+    private String status;
+    private Long cpuTime;
+    private Long realTime;
+    private Long vmSize;
+    private String description;
+    private Integer exitCode;
+    private String programResult;
+    private String allText;
 
-    public String allText;
+    public boolean isOk(){
+        return this.status != null && this.status.toLowerCase().equals("ok");
+    }
 
-    public static EjudgeResult from(List<String> result){
+    public boolean resultEquals(String outputData){
+        return this.getProgramResult().trim().equals(outputData.trim());
+    }
+
+    public static ExecutorResult from(List<String> result){
         return from(String.join("\n", result));
     }
 
-    public static EjudgeResult from(String result){
-        return EjudgeResult.builder()
+    public static ExecutorResult from(String result){
+        return ExecutorResult.builder()
                 .status(getTaskStatus(result))
                 .cpuTime(getTaskCpuTime(result))
                 .realTime(getTaskRealTime(result))
                 .vmSize(getTaskVmSize(result))
                 .description(getTaskDescription(result))
                 .exitCode(getTaskExitCode(result))
+                .programResult(getProgramResult(result))
                 .allText(result)
                 .build();
     }
@@ -79,7 +87,7 @@ public class EjudgeResult {
     }
 
     public static String getTaskDescription(String result){
-        Pattern p = Pattern.compile("Description: ([.]*)\\n");
+        Pattern p = Pattern.compile("Description: ([\\s\\S]*)(?:\\n|$)");
         Matcher m = p.matcher(result);
         if(m.find()){
             return m.group(1);
@@ -93,6 +101,16 @@ public class EjudgeResult {
         Matcher m = p.matcher(result);
         if(m.find()){
             return Integer.parseInt(m.group(1));
+        }else {
+            return null;
+        }
+    }
+
+    public static String getProgramResult(String result){
+        Pattern p = Pattern.compile("task_Start: execv\\(1\\): (?:.\\/run|.\\/compiller)\\n([\\s\\S]*)Status");
+        Matcher m = p.matcher(result);
+        if(m.find()){
+            return m.group(1);
         }else {
             return null;
         }

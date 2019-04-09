@@ -18,7 +18,7 @@ public class ExecutorCmd extends ExecutorCommon {
     }
 
     @Override
-    public ProcessBuilder getRunProcessBuilder(String classFile, String workingDirectory, long timeLimitMillis, long realTimeLimitSec, long maxVmSizeMb) throws IOException {
+    public ProcessBuilder getRunProcessBuilder(String classFile, String workingDirectory, long timeLimitMillis, long realTimeLimitSec, long maxStackSizeMb) throws IOException {
         return new ProcessBuilder(
                 "cmd.exe", "/c", "java -Dfile.encoding=UTF-8 -cp . " + classFile);
     }

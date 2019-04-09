@@ -11,6 +11,7 @@
         </div>
         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xs-6">
             Добро пожаловать ${model.user.get().id}!
+            <a href="solutions/all">Решения</a>
         </div>
         <div class="col-md-1 col-lg-2 col-xs-3">
 
