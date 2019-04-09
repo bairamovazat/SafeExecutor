@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ivmiit.executor.ExecutorCmd;
+import ru.ivmiit.executor.ExecutorEjudge;
 import ru.ivmiit.web.forms.SolutionForm;
 import ru.ivmiit.web.forms.SolutionStatus;
 import ru.ivmiit.web.forms.TaskForm;
@@ -40,8 +41,14 @@ public class TaskServiceImpl implements TaskService {
 
     private ExecutorService executorService = Executors.newCachedThreadPool();
 
+
     @Value("${execute.dir}")
     private String executeDir;
+
+    @Value("${execute.ejudge}")
+    private String pathToEjudgeBin;
+
+    private ExecutorEjudge executorEjudge = new ExecutorEjudge(pathToEjudgeBin);
 
     private static int pagesCount = 5;
 
@@ -100,7 +107,6 @@ public class TaskServiceImpl implements TaskService {
         Solution solution = Solution.from(solutionForm);
         solution.setTask(task);
         solutionRepository.saveAndFlush(solution);
-        ExecutorCmd executorCmd = new ExecutorCmd();
         executorService.submit(() -> {
             //TODO Обязательно оформить адекватно!!!
             try {
@@ -118,19 +124,22 @@ public class TaskServiceImpl implements TaskService {
                 out.close();
 
                 try {
-                    executorCmd.compileJavaFile(javaFile.getAbsolutePath(), directory.getAbsolutePath());
+                    executorEjudge.compileJavaFile(
+                            javaFile.getAbsolutePath(),
+                            directory.getAbsolutePath());
                 } catch (IllegalArgumentException e) {
                     solution.setStatus(SolutionStatus.COMPILATION_ERROR);
                     solutionRepository.saveAndFlush(solution);
                     return;
                 }
+
                 String classFilePath = "Program";
                 int current_test = 1;
                 for (TaskTest test : task.getTestList()) {
                     solution.setCurrentTest(current_test);
                     solutionRepository.saveAndFlush(solution);
 
-                    List<String> result = executorCmd.runFile(classFilePath, directory.getAbsolutePath(), test.getInputData());
+                    List<String> result = executorEjudge.runFile(classFilePath, directory.getAbsolutePath(), test.getInputData(), task.getMaxTime(), task.getMaxMemory(), task.getMaxMemory());
                     String concatResult = String.join("\n", result);
 
                     if (concatResult.toLowerCase().contains("error:")) {
@@ -142,7 +151,6 @@ public class TaskServiceImpl implements TaskService {
                         solutionRepository.saveAndFlush(solution);
                         return;
                     }
-//
                 }
                 solution.setStatus(SolutionStatus.ACCEPTED);
                 solutionRepository.saveAndFlush(solution);

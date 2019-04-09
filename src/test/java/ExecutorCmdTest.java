@@ -50,8 +50,8 @@ public class ExecutorCmdTest {
         String absoluteCompiledFileName = workingDir + "\\" + testFileName + ".class";
 
         deleteFileIfExists(absoluteCompiledFileName);
-
-        ExecutorCmd.compileJavaFile(absoluteJavaFileName, workingDir);
+        ExecutorCmd executorCmd = new ExecutorCmd();
+        executorCmd.compileJavaFile(absoluteJavaFileName, workingDir);
 
     }
 
@@ -59,7 +59,8 @@ public class ExecutorCmdTest {
     void testSimpleCorrectAnswer() throws IOException {
         String testAnswer = "Work!";
         compile(workingDir, simpleTestName);
-        List<String> result = ExecutorCmd.runFile(simpleTestName, workingDir, "");
+        ExecutorCmd executorCmd = new ExecutorCmd();
+        List<String> result = executorCmd.runFile(simpleTestName, workingDir, "", 10, 100, 128);
         if (result.size() != 1 || !result.get(0).equals(testAnswer)) {
             fail("Результат не верен! Ожидалось \"" + testAnswer + "\". Получено \"" + result.get(0) + "\"");
         }
@@ -69,7 +70,8 @@ public class ExecutorCmdTest {
     void testSumCorrectAnswer() throws IOException {
         String testAnswer = "3";
         compile(workingDir, sumTestName);
-        List<String> result = ExecutorCmd.runFile(sumTestName, workingDir, "1 2");
+        ExecutorCmd executorCmd = new ExecutorCmd();
+        List<String> result = executorCmd.runFile(sumTestName, workingDir, "1 2", 10, 100, 128);
         if (result.size() != 1 || !result.get(0).equals(testAnswer)) {
             fail("Результат не верен! Ожидалось \"" + testAnswer + "\". Получено \"" + result.get(0) + "\"");
         }

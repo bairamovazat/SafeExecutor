@@ -32,13 +32,4 @@ public class TaskUtils {
         }
     }
 
-    public static String getTaskStatus(String result){
-        Pattern p = Pattern.compile("Status: [\\w]{0,10}\\n");
-        Matcher m = p.matcher(result);
-        if(m.find()){
-            return m.group(1);
-        }else {
-            return null;
-        }
-    }
 }

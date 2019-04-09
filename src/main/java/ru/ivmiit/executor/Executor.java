@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 public interface Executor {
-    List<String> runFile(java.lang.String javaFile, java.lang.String workingDirectory, java.lang.String inputData, long waitTime) throws IOException;
 
-    void compileJavaFile(String file, String workingDirectory, int timeLimit, int maxVmSizeKB, int maxStackSizeKB) throws IOException;
+    void compileJavaFile(String javaFile, String workingDirectory) throws IOException;
+
+    List<String> runFile(String classFile, String workingDirectory, String inputData, long timeLimitMillis, long realTimeLimitSec, long maxVmSizeMb) throws IOException;
+
 }
