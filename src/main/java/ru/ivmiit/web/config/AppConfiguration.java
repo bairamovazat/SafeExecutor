@@ -58,7 +58,10 @@ public class AppConfiguration implements WebMvcConfigurer {
 
         registry.addResourceHandler("/js/**") //
                 .addResourceLocations("/WEB-INF/classes/js/").setCachePeriod(31556926);
-
+        registry.addResourceHandler("/css/**") //
+                .addResourceLocations("/WEB-INF/classes/css/").setCachePeriod(31556926);
+        registry.addResourceHandler("/resources/**") //
+                .addResourceLocations("/WEB-INF/classes/resources/").setCachePeriod(31556926);
     }
 
     @Bean("threadPoolTaskExecutor")

@@ -31,7 +31,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<User> getAllUsers() {
-        return userRepository.findAllByRole(Role.USER);
+        return userRepository.findAll();
     }
 
 }

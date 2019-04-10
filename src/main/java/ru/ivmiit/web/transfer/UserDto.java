@@ -8,6 +8,9 @@ import ru.ivmiit.web.model.User;
 import ru.ivmiit.web.security.details.Role;
 import ru.ivmiit.web.security.details.State;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +19,7 @@ public class UserDto {
     private Long id;
     private String name;
     private String login;
-    private Role role;
+    private List<Role> role;
     private State state;
     private String email;
 
@@ -25,7 +28,7 @@ public class UserDto {
                 .id(user.getId())
                 .name(user.getName())
                 .login(user.getLogin())
-                .role(user.getRole())
+                .role(user.getRoles().stream().map(ru.ivmiit.web.model.Role::getRole).collect(Collectors.toList()))
                 .state(user.getState())
                 .email(user.getEmail())
                 .build();
