@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="inputMaxTime">Ограничение времени в секундах</label>
+                    <label for="inputMaxTime">Ограничение времени в мс</label>
                     <input name="maxTime" type="number" class="form-control" id="inputMaxTime" min="1" value="1">
                 </div>
 

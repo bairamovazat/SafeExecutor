@@ -15,7 +15,7 @@ public class TaskUtils {
         int end = start + count;
 
         for (int i = start; i < end; i ++){
-            if(maxPage == -1 || i <= maxPage){
+            if(i <= maxPage){
                 result.add(i);
             }
         }

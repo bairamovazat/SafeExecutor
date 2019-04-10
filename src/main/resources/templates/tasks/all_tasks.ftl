@@ -45,7 +45,7 @@
                     </#list>
 
                     <li class="page-item
-                        ${((model.currentPage == model.pageList[model.pageList?size - 1])?string("disabled",""))}
+                        ${((model.pageList?size <= 0 || model.currentPage == model.pageList[model.pageList?size - 1])?string("disabled",""))}
                         ">
                         <a class="page-link" href="?page=${model.currentPage + 1}">Next</a>
                     </li>

@@ -24,7 +24,7 @@
 
              <#if !model.user.isPresent()>
                 <li class="nav-item">
-                    <a class="nav-link" href="/sign-up">Регистрация</a>
+                    <a class="nav-link" href="/login">Авторизация</a>
                 </li>
              </#if>
 
