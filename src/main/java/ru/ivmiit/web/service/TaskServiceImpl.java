@@ -28,8 +28,11 @@ import ru.ivmiit.web.utils.TaskUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -63,6 +66,7 @@ public class TaskServiceImpl implements TaskService {
     private static int pagesCount = 5;
 
     private static int defaultPageElementCount = 10;
+
 
     public TaskServiceImpl(@Value("${execute.dir}") String executeDir, @Value("${execute.ejudge}") String pathToEjudgeBin) {
         File file = new File(executeDir);
@@ -191,8 +195,4 @@ public class TaskServiceImpl implements TaskService {
         solutionRepository.saveAndFlush(solution);
     }
 
-    public static void main(String[] args) {
-        File file = new File("solutions");
-        System.out.println(file.exists());
-    }
 }

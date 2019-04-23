@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/profile/**").hasAuthority("USER")
                 .antMatchers("/tasks/create").hasAuthority("CREATOR")
+                .antMatchers("/polygon/import").hasAuthority("CREATOR")
                 .antMatchers("/tasks/*").permitAll()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/sign-up").permitAll()
