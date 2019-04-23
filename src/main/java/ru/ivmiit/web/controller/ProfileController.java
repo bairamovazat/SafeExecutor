@@ -31,7 +31,8 @@ public class ProfileController {
     }
 
     @GetMapping("/solutions/all")
-    public String getProfileSolutionsPage(Authentication authentication, @ModelAttribute("model") ModelMap model,  @RequestParam("page") Optional<Integer> page) {
+    public String getProfileSolutionsPage(Authentication authentication, @ModelAttribute("model") ModelMap model,
+                                          @RequestParam("page") Optional<Integer> page) {
         authenticationService.putUserToModelIfExists(authentication, model);
         int currentPage = page.orElse(0);
         model.addAttribute("solutions", solutionService.getTasks(currentPage));

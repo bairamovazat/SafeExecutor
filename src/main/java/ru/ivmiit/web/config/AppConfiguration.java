@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import ru.ivmiit.web.security.config.SecurityConfig;
 
 import javax.servlet.FilterRegistration;
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import java.util.List;
@@ -110,6 +112,18 @@ public class AppConfiguration implements WebMvcConfigurer {
         return mailSender;
     }
 
+    @Bean
+    public MultipartConfigElement multipartConfigElement() {
+        return new MultipartConfigElement("");
+    }
+
+
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(1024*1024*100);
+        return multipartResolver;
+    }
 
 
 //    @Bean
