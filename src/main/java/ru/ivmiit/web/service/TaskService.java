@@ -6,6 +6,7 @@ import ru.ivmiit.web.forms.TaskForm;
 import ru.ivmiit.web.model.Solution;
 import ru.ivmiit.web.model.Task;
 import ru.ivmiit.web.model.User;
+import ru.ivmiit.web.transfer.TaskDto;
 
 import java.util.List;
 
@@ -21,6 +22,8 @@ public interface TaskService {
     List<Integer> getPageList(int currentPage);
 
     Task getTask(Long id);
+
+    TaskDto getTaskDto(Long id);
 
     @Transactional
     void saveAndCheckSolution(SolutionForm solutionForm, User user);

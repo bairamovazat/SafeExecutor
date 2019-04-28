@@ -35,6 +35,9 @@ public class Task {
     @OneToMany(mappedBy="task", cascade = CascadeType.ALL)
     private List<TaskTest> testList;
 
+    @OneToMany(mappedBy="task", cascade = CascadeType.ALL)
+    private List<TaskSample> sampleList;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="category_id")
     private TaskCategory category;

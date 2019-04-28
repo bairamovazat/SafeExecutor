@@ -1,15 +1,20 @@
 package ru.ivmiit.web.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -29,31 +34,11 @@ import javax.servlet.ServletException;
 import java.util.List;
 import java.util.Properties;
 
-
-@Configuration
-@EnableWebMvc
-@EnableAsync
-@PropertySource("classpath:application.properties")
-@Import({JpaConfiguration.class, SecurityConfig.class})
-@ComponentScan(basePackages = {"ru.ivmiit.web.model", "ru.ivmiit.web.service", "ru.ivmiit.web.controller"})
+@SpringBootApplication
+@ComponentScan("ru.ivmiit.web")
+@EnableJpaRepositories("ru.ivmiit.web.repository")
+@EntityScan(basePackages = "ru.ivmiit.web.model", basePackageClasses = Jsr310JpaConverters.class)
 public class AppConfiguration implements WebMvcConfigurer {
-
-
-    @Value("${email.name}")
-    private String emailName;
-
-    @Value("${email.password}")
-    private String emailPassword;
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(new MappingJackson2HttpMessageConverter());
-    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -74,42 +59,6 @@ public class AppConfiguration implements WebMvcConfigurer {
         executor.setWaitForTasksToCompleteOnShutdown(true);
         executor.setThreadNamePrefix("Async-");
         return executor;
-    }
-
-    @Bean
-    public FreeMarkerViewResolver getFmViewResolver() {
-        FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
-        resolver.setCache(true);
-        resolver.setPrefix("");
-        resolver.setSuffix(".ftl");
-        resolver.setContentType("text/html; charset=UTF-8");
-        resolver.setOrder(0);
-        return resolver;
-    }
-
-    @Bean
-    public FreeMarkerConfigurer freemarkerConfig() {
-        FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
-        freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/classes/templates/");
-        return freeMarkerConfigurer;
-    }
-
-    @Bean
-    public JavaMailSender getJavaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
-
-        mailSender.setUsername(emailName);
-        mailSender.setPassword(emailPassword);
-
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.debug", "true");
-
-        return mailSender;
     }
 
     @Bean
@@ -137,3 +86,4 @@ public class AppConfiguration implements WebMvcConfigurer {
 //    }
 
 }
+
