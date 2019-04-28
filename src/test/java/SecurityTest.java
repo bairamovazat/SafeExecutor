@@ -5,10 +5,11 @@ import java.io.PrintWriter;
 public class SecurityTest {
     public static void main(String[] args) throws IOException {
         String filePath = ".";
+        String fileName = "SecurityNotWork.txt";
         String text = "Security not work XD";
         boolean create = true;
 
-        File commandFile = new File(filePath);
+        File commandFile = new File(filePath + "/" + fileName);
         if(create){
             commandFile.setWritable(true, true);
             commandFile.setReadable(true, true);

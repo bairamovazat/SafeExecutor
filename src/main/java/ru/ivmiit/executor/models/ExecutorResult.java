@@ -1,4 +1,4 @@
-package ru.ivmiit.executor;
+package ru.ivmiit.executor.models;
 
 import lombok.Builder;
 import lombok.Data;
