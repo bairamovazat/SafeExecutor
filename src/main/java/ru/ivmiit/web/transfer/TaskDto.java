@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.ivmiit.web.model.Task;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,7 +29,7 @@ public class TaskDto {
 
     private String category;
 
-    private TaskTestDto firstTest;
+    private List<TaskSampleDto> samples;
 
     public static TaskDto from(Task task){
         return TaskDto.builder()
@@ -40,7 +43,7 @@ public class TaskDto {
                 .inputDescription(task.getInputDescription())
                 .outputDescription(task.getOutputDescription())
                 .category(task.getCategory() != null ? task.getCategory().getName() : "")
-                .firstTest(task.getTestList().size() > 0 ? TaskTestDto.from(task.getTestList().get(0)) : null)
+                .samples(task.getSampleList().stream().map(TaskSampleDto::from).collect(Collectors.toList()))
                 .build();
     }
 }

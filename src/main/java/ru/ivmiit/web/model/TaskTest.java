@@ -3,6 +3,7 @@ package ru.ivmiit.web.model;
 
 import lombok.*;
 import ru.ivmiit.web.forms.TaskTestForm;
+import ru.ivmiit.web.utils.model.ProblemTest;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,6 +28,14 @@ public class TaskTest {
 
     public String inputData;
     public String outputData;
+
+
+    public static TaskTest from(ProblemTest problemTest){
+        return TaskTest.builder()
+                .inputData(problemTest.getInput())
+                .outputData(problemTest.getAnswer())
+                .build();
+    }
 
     public static TaskTest from(TaskTestForm testForm){
         return TaskTest.builder()

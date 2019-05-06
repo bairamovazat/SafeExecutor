@@ -17,7 +17,7 @@
                             <h5 class="card-title text-center">${model.task.name}</h5>
                         </li>
                         <li class="list-group-item text-center">
-                            Время: ${model.task.maxTime! / 1000} сек. Память ${model.task.maxMemory!} КБ.
+                            Время: ${model.task.maxTime???then(model.task.maxTime, 0) / 1000} сек. Память ${model.task.maxMemory!} МБ.
                             Сложность ${model.task.complexity!}
                         </li>
                         <li class="list-group-item">
@@ -33,21 +33,22 @@
                             <h6 class="card-subtitle mb-2">Выходные данные</h6>
                         ${model.task.outputDescription!}
                         </li>
-                        <#if model.task.firstTest??>
-                        <li class="list-group-item">
-                            <h6 class="card-subtitle mb-2">Пример входных данных: </h6>
-                            <div>
-                                ${model.task.firstTest.inputData!}
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <h6 class="card-subtitle mb-2">Пример выходных данных: </h6>
-                            <div>
-                                ${model.task.firstTest.outputData!}
-                            </div>
-                        </li>
+                        <#if model.task.samples??>
+                            <#list model.task.samples as sample>
+                                <li class="list-group-item">
+                                    <h6 class="card-subtitle mb-2">Пример входных данных: </h6>
+                                    <div>
+                                        ${sample.inputData!}
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <h6 class="card-subtitle mb-2">Пример выходных данных: </h6>
+                                    <div>
+                                        ${sample.outputData!}
+                                    </div>
+                                </li>
+                            </#list>
                         </#if>
-
                         <#if model.user??>
                             <li class="list-group-item">
                                 <form action="" method='POST'>
