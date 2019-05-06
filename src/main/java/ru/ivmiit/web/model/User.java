@@ -43,6 +43,10 @@ public class User {
 
     private String email;
 
+    public boolean hasRole(String role){
+        return roles.stream().anyMatch(r -> r.getRole().toString().equals(role));
+    }
+
     public boolean hasRole(ru.ivmiit.web.security.details.Role role){
         return roles.stream().anyMatch(r -> r.getRole().equals(role));
     }

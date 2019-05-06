@@ -8,6 +8,8 @@ import ru.ivmiit.web.model.User;
 import ru.ivmiit.web.security.details.Role;
 import ru.ivmiit.web.security.details.State;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +21,7 @@ public class UserDto {
     private Long id;
     private String name;
     private String login;
-    private List<Role> role;
+    private List<Role> roles;
     private State state;
     private String email;
 
@@ -28,9 +30,22 @@ public class UserDto {
                 .id(user.getId())
                 .name(user.getName())
                 .login(user.getLogin())
-                .role(user.getRoles().stream().map(ru.ivmiit.web.model.Role::getRole).collect(Collectors.toList()))
+                .roles(user.getRoles().stream().map(ru.ivmiit.web.model.Role::getRole).collect(Collectors.toList()))
                 .state(user.getState())
                 .email(user.getEmail())
                 .build();
+    }
+
+    public boolean hasRole(String role){
+        return roles.stream().anyMatch(r -> r.toString().equals(role));
+    }
+
+    public static void main(String[] args) {
+        UserDto userDto = UserDto.builder()
+                .roles(Collections.singletonList(Role.CREATOR))
+                .build();
+
+        System.out.println(userDto.hasRole("CREATOR"));
+
     }
 }

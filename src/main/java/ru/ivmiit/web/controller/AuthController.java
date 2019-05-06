@@ -44,15 +44,7 @@ public class AuthController {
 
     @GetMapping("/")
     public String root(Authentication authentication) {
-        if (authentication != null) {
-            User user = service.getUserByAuthentication(authentication);
-            if (user.hasRole(Role.USER)) {
-                return "redirect:/profile";
-            } else if (user.hasRole(Role.ADMIN)) {
-                return "redirect:/admin/users";
-            }
-        }
-        return "redirect:/login";
+        return "redirect:/tasks/all";
     }
 
 

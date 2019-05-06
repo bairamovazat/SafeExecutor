@@ -32,10 +32,10 @@ public class Task {
     @Column(length = 1024)
     private String outputDescription;
 
-    @OneToMany(mappedBy="task", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="task", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TaskTest> testList;
 
-    @OneToMany(mappedBy="task", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="task", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TaskSample> sampleList;
 
     @ManyToOne(cascade = CascadeType.ALL)

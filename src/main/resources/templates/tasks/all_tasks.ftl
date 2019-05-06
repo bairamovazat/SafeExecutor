@@ -10,6 +10,7 @@
 
         </div>
         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xs-6">
+            <div style="text-align: center"><h3><a href="create">Создать задачу</a></h3></div>
             <table class="table table-striped">
                 <thead>
                 <tr>

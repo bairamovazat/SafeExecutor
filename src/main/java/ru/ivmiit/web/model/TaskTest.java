@@ -50,4 +50,10 @@ public class TaskTest {
                 .map(TaskTest::from)
                 .collect(Collectors.toList());
     }
+
+    public TaskTest copyValuesAndGet(TaskTestForm taskTestForm){
+        this.setInputData(taskTestForm.getInputData());
+        this.setOutputData(taskTestForm.getOutputData());
+        return this;
+    }
 }

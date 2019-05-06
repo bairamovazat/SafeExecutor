@@ -1,23 +1,18 @@
 package ru.ivmiit.web.utils;
 
 import org.apache.commons.compress.archivers.ArchiveEntry;
-import org.apache.commons.compress.archivers.ArchiveException;
-import org.apache.commons.compress.archivers.ArchiveInputStream;
-import org.apache.commons.compress.archivers.ArchiveStreamFactory;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 public class FileUtils {
 
     public static void writeToFile(String filePath, String text, boolean create) throws IOException {
 
         File commandFile = new File(filePath);
-        if(create){
+        if (create) {
             commandFile.setWritable(true, false);
             commandFile.setReadable(true, false);
             commandFile.setExecutable(true, false);
