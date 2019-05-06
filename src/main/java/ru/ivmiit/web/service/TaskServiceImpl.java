@@ -1,8 +1,5 @@
 package ru.ivmiit.web.service;
 
-import org.hibernate.Hibernate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -12,17 +9,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ivmiit.executor.models.ExecutorResult;
 import ru.ivmiit.executor.models.executors.JavaExecutor;
-import ru.ivmiit.web.forms.SolutionForm;
-import ru.ivmiit.web.forms.SolutionStatus;
-import ru.ivmiit.web.forms.TaskForm;
-import ru.ivmiit.web.model.Solution;
-import ru.ivmiit.web.model.Task;
-import ru.ivmiit.web.model.TaskTest;
-import ru.ivmiit.web.model.User;
-import ru.ivmiit.web.repository.SolutionRepository;
-import ru.ivmiit.web.repository.TaskCategoryRepository;
-import ru.ivmiit.web.repository.TaskRepository;
+import ru.ivmiit.web.forms.*;
+import ru.ivmiit.web.model.*;
+import ru.ivmiit.web.repository.*;
 import ru.ivmiit.web.transfer.TaskDto;
+import ru.ivmiit.web.transfer.TaskSampleDto;
+import ru.ivmiit.web.transfer.TaskTestDto;
 import ru.ivmiit.web.utils.FileUtils;
 import ru.ivmiit.web.utils.TaskUtils;
 
@@ -34,7 +26,6 @@ import java.util.List;
 @Service
 public class TaskServiceImpl implements TaskService {
 
-    static Logger logger = LoggerFactory.getLogger(TaskService.class.getName());
     private static int pagesCount = 5;
     private static int defaultPageElementCount = 10;
     @Autowired
@@ -45,6 +36,10 @@ public class TaskServiceImpl implements TaskService {
     private TaskCategoryRepository taskCategoryRepository;
     @Autowired
     private SolutionRepository solutionRepository;
+    @Autowired
+    private TaskTestRepository taskTestRepository;
+    @Autowired
+    private TaskSampleRepository taskSampleRepository;
     @Value("${execute.dir}")
     private String executeDir;
     @Value("${execute.ejudge}")
@@ -121,7 +116,6 @@ public class TaskServiceImpl implements TaskService {
         saveOnNewTransact(solution);
 
         if (task.getTestList().size() == 0) {
-            logger.error("Task test size 0: " + task);
             solution.setStatus(SolutionStatus.TEST_ERROR);
             saveOnNewTransact(solution);
             return;
@@ -179,7 +173,6 @@ public class TaskServiceImpl implements TaskService {
         } catch (IOException ignore) {
             solution.setStatus(SolutionStatus.WRONG_ANSWER);
             saveOnNewTransact(solution);
-            logger.error("Task test IOException: " + task);
         }
     }
 
@@ -188,4 +181,72 @@ public class TaskServiceImpl implements TaskService {
         solutionRepository.saveAndFlush(solution);
     }
 
+
+    @Override
+    @Transactional
+    public void saveTaskTest(Long taskId, TaskTestForm taskTestForm){
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new IllegalArgumentException("Task not found"));
+
+        TaskTest taskTest = TaskTest.from(taskTestForm);
+        taskTest.setTask(task);
+
+        if(taskTestForm.getTestId() != null){
+            taskTest = taskTestRepository.findById(taskTestForm.getTestId())
+                    .orElseThrow(() -> new IllegalArgumentException("Test not found"));
+            taskTest.copyValuesAndGet(taskTestForm);
+        }
+
+        taskTestRepository.save(taskTest);
+    }
+
+    @Override
+    @Transactional
+    public void saveTaskSample(Long taskId, TaskSampleForm taskSampleForm){
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new IllegalArgumentException("Task not found"));
+
+        TaskSample taskSample = TaskSample.from(taskSampleForm);
+        taskSample.setTask(task);
+
+        if(taskSampleForm.getTestId() != null){
+            taskSample = taskSampleRepository.findById(taskSampleForm.getTestId())
+                    .orElseThrow(() -> new IllegalArgumentException("Sample not found"));
+            taskSample.copyValuesAndGet(taskSampleForm);
+        }
+
+        taskSampleRepository.save(taskSample);
+    }
+
+
+    @Override
+    public TaskSample getTaskSample(Long taskId){
+        return taskSampleRepository.findById(taskId)
+                .orElseThrow(() -> new IllegalArgumentException("Sample not found"));
+    }
+
+    @Override
+    public TaskTest getTaskTest(Long taskId){
+        return taskTestRepository.findById(taskId)
+                .orElseThrow(() -> new IllegalArgumentException("Test not found"));
+    }
+
+    @Override
+    public TaskSampleDto getTaskSampleDto(Long taskId){
+        return TaskSampleDto.from(getTaskSample(taskId));
+    }
+
+    @Override
+    public TaskTestDto getTaskTestDto(Long taskId){
+        return TaskTestDto.from(getTaskTest(taskId));
+    }
+
+    @Override
+    @Transactional
+    public void deleteTest(Long taskId){
+        taskTestRepository.deleteById(taskId);
+    }
+
+    @Override
+    public void deleteSample(Long taskId){
+        taskSampleRepository.deleteById(taskId);
+    }
 }

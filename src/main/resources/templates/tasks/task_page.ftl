@@ -17,9 +17,19 @@
                             <h5 class="card-title text-center">${model.task.name}</h5>
                         </li>
                         <li class="list-group-item text-center">
-                            Время: ${model.task.maxTime???then(model.task.maxTime, 0) / 1000} сек. Память ${model.task.maxMemory!} МБ.
+                            Время: ${model.task.maxTime???then(model.task.maxTime, 0) / 1000} сек.
+                            Память ${model.task.maxMemory!} МБ.
                             Сложность ${model.task.complexity!}
                         </li>
+                        <#if model.user.isPresent() && model.user.get().hasRole("CREATOR")>
+                           <li class="list-group-item">
+                               <a href="create?taskId=${model.task.id}">Изменить</a>
+                           </li>
+                           <li class="list-group-item">
+                               <a href="${model.task.id}/test/all">Тесты</a>
+                           </li>
+                        </#if>
+
                         <li class="list-group-item">
                             <h6 class="card-subtitle mb-2">Описание</h6>
                         ${model.task.description!}
@@ -64,10 +74,13 @@
                                         <label for="inputText">Код</label>
                                         <textarea name="codeImport" rows="1" class="form-control"
                                                   maxlength="2048">${"import java.util.ArrayList;"}</textarea>
-                                        <textarea class="code_not_resize form-control" content="" rows="1" disabled>${"public class Program {"}</textarea>
+                                        <textarea class="code_not_resize form-control" content="" rows="1"
+                                                  disabled>${"public class Program {"}</textarea>
                                         <textarea style="overflow:hidden" name="code" rows="3" class="form-control"
-                                                  maxlength="2048" content="">${"    public static void main(String[] args){\n\n    }"}</textarea>
-                                        <textarea class="code_not_resize form-control" content="" rows="1" disabled>${"}"}</textarea>
+                                                  maxlength="2048"
+                                                  content="">${"    public static void main(String[] args){\n\n    }"}</textarea>
+                                        <textarea class="code_not_resize form-control" content="" rows="1"
+                                                  disabled>${"}"}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" type="submit" value="Отправить">
@@ -88,7 +101,7 @@
     $('textarea').autoResize();
 </script>
 <style>
-    .code_not_resize{
+    .code_not_resize {
         resize: none;
     }
 </style>

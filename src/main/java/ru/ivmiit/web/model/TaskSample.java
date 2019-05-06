@@ -1,6 +1,7 @@
 package ru.ivmiit.web.model;
 
 import lombok.*;
+import ru.ivmiit.web.forms.TaskForm;
 import ru.ivmiit.web.forms.TaskSampleForm;
 import ru.ivmiit.web.utils.model.ProblemSampleTest;
 
@@ -48,6 +49,12 @@ public class TaskSample {
                 .stream()
                 .map(TaskSample::from)
                 .collect(Collectors.toList());
+    }
+
+    public TaskSample copyValuesAndGet(TaskSampleForm taskSampleForm){
+        this.setInputData(taskSampleForm.getInputData());
+        this.setOutputData(taskSampleForm.getOutputData());
+        return this;
     }
 
 }

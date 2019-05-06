@@ -7,9 +7,11 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -51,7 +53,7 @@ public class PolygonProblem {
 
     public List<ProblemTest> readProblemTestsFromDirectory() throws IOException {
         List<ProblemTest> tests = new ArrayList<>();
-        for(int i = 1; i <= testCount; i++){
+        for (int i = 1; i <= testCount; i++) {
             tests.add(readProblemTestFromDirectory(i));
         }
         return tests;

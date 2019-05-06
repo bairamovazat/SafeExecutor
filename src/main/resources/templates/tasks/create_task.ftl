@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <#if info??>
-                            <div class="alert alert-success" role="alert">${info}</div>
+                        <div class="alert alert-success" role="alert">${info}</div>
                     </#if>
                 </div>
                 <div class="form-group">

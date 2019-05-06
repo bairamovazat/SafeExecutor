@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.ivmiit.web.model.TaskTest;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,5 +25,9 @@ public class TaskTestDto {
                 .inputData(taskTest.getInputData())
                 .outputData(taskTest.getOutputData())
                 .build();
+    }
+
+    public static List<TaskTestDto> from(List<TaskTest> taskTestList){
+        return taskTestList.stream().map(TaskTestDto::from).collect(Collectors.toList());
     }
 }
