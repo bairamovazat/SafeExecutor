@@ -6,6 +6,7 @@ import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -90,8 +91,8 @@ public class TaskController {
     public String getTaskPage(@ModelAttribute("model") ModelMap model, Authentication authentication, @PathVariable("id") Optional<Long> taskId) {
         authenticationService.putUserToModelIfExists(authentication, model);
         try {
-            Task task = taskService.getTask(taskId.orElseThrow(() -> new IllegalArgumentException("Id not found")));
-            model.addAttribute("task", TaskDto.from(task));
+            TaskDto task = taskService.getTaskDto(taskId.orElseThrow(() -> new IllegalArgumentException("Id not found")));
+            model.addAttribute("task", task);
         }catch (IllegalArgumentException e){
             return "redirect:all";
         }

@@ -1,11 +1,10 @@
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ru.ivmiit.executor.Executor;
-import ru.ivmiit.executor.ExecutorEjudge;
-import ru.ivmiit.executor.ExecutorResult;
+import ru.ivmiit.executor.models.executors.Executor;
+import ru.ivmiit.executor.models.executors.JavaExecutor;
+import ru.ivmiit.executor.models.ExecutorResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +16,8 @@ public class ExecutorTest {
     public static String workingDir = System.getProperty("user.dir") + "/src/test/java";
     public static String simpleTestName = "SimpleTest";
     public static String sumTestName = "SumTest";
-    public static String infinityTestName = "InfinityTest";
+    public static String outOfTimeTestName = "OutOfTimeTest";
+    public static String outOfMemoryTestName = "OutOfMemoryTest";
     public static String securityTestName = "SecurityTest";
 
     public static Executor executor;
@@ -36,14 +36,14 @@ public class ExecutorTest {
 
     @BeforeAll
     public static void createExecutor(){
-        executor = new ExecutorEjudge("/home/ejudge/inst-ejudge/bin/ejudge-execute");
+        executor = new JavaExecutor("/home/ejudge/inst-ejudge/bin/ejudge-execute");
     }
 
     @AfterAll
     public static void clearCompileFiles() {
         deleteFileIfExists(workingDir + "/" + simpleTestName + ".class");
         deleteFileIfExists(workingDir + "/" + sumTestName + ".class");
-        deleteFileIfExists(workingDir + "/" + infinityTestName + ".class");
+        deleteFileIfExists(workingDir + "/" + outOfTimeTestName + ".class");
         deleteFileIfExists(workingDir + "/" + securityTestName + ".class");
         deleteFileIfExists(workingDir + "/" + "run");
         deleteFileIfExists(workingDir + "/" + "compiller");
@@ -63,14 +63,14 @@ public class ExecutorTest {
         String absoluteCompiledFileName = workingDir + "/" + testFileName + ".class";
 
         deleteFileIfExists(absoluteCompiledFileName);
-        executor.compileJavaFile(absoluteJavaFileName, workingDir);
+        executor.compileFile(absoluteJavaFileName, workingDir);
     }
 
     @Test
     void testSimpleCorrectAnswer() throws IOException {
         String testAnswer = "Work!";
         compile(workingDir, simpleTestName);
-        ExecutorResult result = executor.runFile(simpleTestName, workingDir, "", 1000, 10, 64);
+        ExecutorResult result = executor.runFile(simpleTestName, workingDir, "", 1000, 10, 64000);
         if (!result.isOk() || !result.getProgramResult().equals(testAnswer)) {
             fail("Результат не верен! Ожидалось \"" + testAnswer + "\". Получено \"" + result + "\"");
         }
@@ -88,11 +88,30 @@ public class ExecutorTest {
 
     @Test
     void testTimeOut() throws IOException {
-        compile(workingDir, infinityTestName);
-        ExecutorResult result  = executor.runFile(infinityTestName, workingDir, "1 2", 1000, 10, 64);
+        compile(workingDir, outOfTimeTestName);
+        ExecutorResult result  = executor.runFile(outOfTimeTestName, workingDir, "1 2", 1000, 10, 64);
         if (result.isOk()) {
             fail("Результат не верен! Ожидалось timeout error. Получено \"" + result + "\"");
         }
+    }
+
+    @Test
+    void securityTest() throws IOException {
+        compile(workingDir, securityTestName);
+        ExecutorResult result  = executor.runFile(securityTestName, workingDir, "1 2", 1000, 10, 64);
+        if (result.isOk()) {
+            fail("Результат не верен! Ожидалось security error. Получено \"" + result + "\"");
+        }
+        System.out.println(result);
+    }
+
+    void testMemoryOut() throws IOException {
+        compile(workingDir, outOfMemoryTestName);
+        ExecutorResult result  = executor.runFile(outOfMemoryTestName, workingDir, "1 2", 100000, 100, 64);
+        if (result.isOk()) {
+            fail("Результат не верен! Ожидалось memory limit error. Получено \"" + result + "\"");
+        }
+        System.out.println(result);
     }
 
 }

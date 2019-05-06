@@ -1,8 +1,16 @@
 package ru.ivmiit.web.utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.ArchiveException;
+import org.apache.commons.compress.archivers.ArchiveInputStream;
+import org.apache.commons.compress.archivers.ArchiveStreamFactory;
+import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
+import org.apache.commons.io.IOUtils;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class FileUtils {
 
@@ -22,5 +30,54 @@ public class FileUtils {
         PrintWriter out = new PrintWriter(commandFile.getAbsolutePath(), "UTF-8");
         out.print(text);
         out.close();
+    }
+
+
+    public static void unzip(InputStream zip, String destPath) throws IOException {
+        ZipArchiveInputStream input = new ZipArchiveInputStream(zip, "UTF-8", true, true);
+
+        File destination = new File(destPath);
+        ArchiveEntry entry = null;
+        while ((entry = input.getNextEntry()) != null) {
+            if (!input.canReadEntryData(entry)) {
+                // log something?
+                continue;
+            }
+            File f = newFile(destination, entry);
+            if (entry.isDirectory()) {
+                if (!f.isDirectory() && !f.mkdirs()) {
+                    throw new IOException("failed to create directory " + f);
+                }
+            } else {
+                File parent = f.getParentFile();
+                if (!parent.isDirectory() && !parent.mkdirs()) {
+                    throw new IOException("failed to create directory " + parent);
+                }
+                try (OutputStream o = Files.newOutputStream(f.toPath())) {
+                    IOUtils.copy(input, o);
+                }
+            }
+        }
+
+    }
+
+    public static File newFile(File destinationDir, ArchiveEntry zipEntry) throws IOException {
+        File destFile = new File(destinationDir, zipEntry.getName());
+
+        String destDirPath = destinationDir.getCanonicalPath();
+        String destFilePath = destFile.getCanonicalPath();
+
+        if (!destFilePath.startsWith(destDirPath + File.separator)) {
+            throw new IOException("Entry is outside of the target dir: " + zipEntry.getName());
+        }
+
+        return destFile;
+    }
+
+    public static void main(String[] args) throws IOException {
+        File zipFile = new File("/home/ejudge/Загрузки/example-a-plus-b-4.zip");
+        String destDir = "/home/ejudge/unzip";
+        InputStream targetStream = new FileInputStream(zipFile);
+        unzip(targetStream, destDir);
     }
 }
