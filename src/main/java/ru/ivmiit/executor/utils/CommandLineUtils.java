@@ -3,6 +3,7 @@ package ru.ivmiit.executor.utils;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class CommandLineUtils {
 
@@ -25,5 +26,13 @@ public class CommandLineUtils {
         });
 
         return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String data = scanner.nextLine();
+        int firstNumber = Integer.parseInt(data.split(" ")[0]);
+        int secondNumber = Integer.parseInt(data.split(" ")[1]);
+        System.out.println(firstNumber + secondNumber);
     }
 }
