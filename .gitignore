@@ -1,13 +1,24 @@
-**/node_modules/**
+##############################
+## Java
+##############################
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
 
-# Intellij
-.idea/
-*.iml
-*.iws
-
-# Mac
-.DS_Store
-
-# Maven
-log/
+##############################
+## Maven
+##############################
 target/
+
+##############################
+## IntelliJ
+##############################
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
