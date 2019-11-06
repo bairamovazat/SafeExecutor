@@ -1915,6 +1915,9 @@ task_Start(tTask *tsk) {
 //            char* args[] = {"java", "-version", NULL};
 //            execv("/usr/bin/java", args);
 
+//set follow-fork-mode child
+//set detach-on-fork off
+
         execv(tsk->path, tsk->args.v);
         }
         /*
