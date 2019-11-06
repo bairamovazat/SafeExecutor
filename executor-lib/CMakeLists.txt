@@ -5,16 +5,16 @@ set(CMAKE_C_STANDARD 11)
 set(SRC_DIR src/main/c/ru/ivmiit/ejudge-executor)
 set(REUSE_DIR ${SRC_DIR}/ejudge-reuse)
 set(HEADERS target/headers)
+set(JVM_DIR /usr/lib/jvm/java-8-openjdk-amd64)
 
-message(WARNING $ENV{JRE_HOME})
 include_directories(ejudge)
 
 find_package(ZLIB)
 
-include_directories(/usr/lib/jvm/java-8-openjdk-amd64/include)
-include_directories(/usr/lib/jvm/java-8-openjdk-amd64/include/linux)
-link_directories(/usr/lib/jvm/java-8-openjdk-amd64/include)
-link_directories(/usr/lib/jvm/java-8-openjdk-amd64/include/linux)
+include_directories(${JVM_DIR}/include)
+include_directories(${JVM_DIR}/include/linux)
+link_directories(${JVM_DIR}/include)
+link_directories(${JVM_DIR}/include/linux)
 
 set(SRC_LIST ${REUSE_DIR}/reuse_exec.c
         ${REUSE_DIR}/reuse_logger.c
@@ -43,3 +43,4 @@ add_executable(EjudgeExecutor ${SRC_DIR}/execute.c ${SRC_LIST})
 
 add_library(EjudgeExecutorDll SHARED ${SRC_DIR}/ru_ivmiit_executor_SafeExecutor.c ${SRC_LIST})
 target_link_libraries(EjudgeExecutor ${ZLIB_LIBRARIES})
+target_link_libraries(EjudgeExecutorDll ${ZLIB_LIBRARIES})

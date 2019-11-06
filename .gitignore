@@ -22,3 +22,5 @@ out/
 *.iml
 *.ipr
 *.iws
+
+cmake-build-*

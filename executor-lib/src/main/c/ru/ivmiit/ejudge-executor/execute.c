@@ -767,8 +767,7 @@ run_all_tests(int argc, char *argv[])
   return retval;
 }
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   int i, r;
 
