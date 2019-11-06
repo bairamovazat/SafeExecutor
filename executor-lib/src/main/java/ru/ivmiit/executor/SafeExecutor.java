@@ -2,15 +2,19 @@ package ru.ivmiit.executor;
 
 import ru.ivmiit.executor.utils.NativeLoadUtils;
 
+import java.io.File;
+
 public class SafeExecutor {
     static {
-        NativeLoadUtils.putLibToTmpAndLoad("libEjudgeExecutorDll.so");
+        File file = new File(SafeExecutor.class.getClassLoader().getResource("libEjudgeExecutorDll.so").getPath());
+        System.load(file.getAbsolutePath());
+//        NativeLoadUtils.putLibToTmpAndLoad("libEjudgeExecutorDll.so");
     }
 
-    native void main(int argc, String[] argv);
+    private native int main(int argc, String[] argv);
 
     public static void main(String[] args) {
         SafeExecutor safeExecutor = new SafeExecutor();
-        safeExecutor.main(1, new String[]{"test"});
+        safeExecutor.main(0, new String[]{""});
     }
 }
