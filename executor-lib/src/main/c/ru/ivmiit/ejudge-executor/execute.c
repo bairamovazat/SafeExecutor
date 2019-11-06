@@ -767,6 +767,9 @@ run_all_tests(int argc, char *argv[])
   return retval;
 }
 
+//for debug child process
+//set follow-fork-mode child
+//set detach-on-fork off
 int main(int argc, char *argv[])
 {
   int i, r;
