@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="SafeExecutor" targetName="EjudgeExecutorDll" />
+      <config projectName="SafeExecutor" targetName="EjudgeExecutor" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cbc63025-e4db-498d-b095-d8880d868b35" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/compile.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/fileutl.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_checkaccess.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_errormsg.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_errorstring.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_exec.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_geterrorstring.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_getsignalstring.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_getworkingdir.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_isabsolutepath.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_isfile.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_logger.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_nodename.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_normalize_path.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_rgetworkingdir.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/archive_paths.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/autoconf.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/avatar_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/base32.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/base64.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/bitset.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/blowfish.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/bson_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/build_support.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/cJSON.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/c_value.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/c_value_ops.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/cgi.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/charsets.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/clarlog.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/clarlog_state.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/cldb_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/clntutil.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/common_mongo_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/common_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/compat.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/compile_packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/compile_packet_priv.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/config.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/content_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/contest_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/contests.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/copyright.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/cpu.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/cr_serialize.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/csv.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/curtime.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/dates_config.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/diff.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/digest_io.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/dwarf_parse.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ej_byteorder.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ej_import_packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ej_jobs.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ej_libzip.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ej_limits.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ej_process.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ej_types.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ej_uuid.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ejudge_cfg.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ejudge_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/errlog.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/errors.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/exec.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/expat_iface.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/external_action.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/file_perms.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/filehash.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/fileutl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/filter_eval.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/filter_tree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/flexstring.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/fp_props.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/full_archive.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/getopt.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/hash.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/hash_priv.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/html.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/html_parse.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/http_request.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/imagemagick.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/integral.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/internal_pages.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/interrupt.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/iterators.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/job_packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/l10n.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/lang_config_vis.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/list_ops.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/logger.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/mempage.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/compile_packet_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/contests_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/dates_config_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/ej_import_packet_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/polygon_packet_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/prepare_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/problem_config_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/super-serve_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/super_html_6_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta/super_run_packet_meta.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/meta_generic.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/mime_type.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/mischtml.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/misctext.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ncheck_packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/ncurses_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/new-server.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/new_server_clnt.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/new_server_match.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/new_server_pi.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/new_server_proto.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/nsdb_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/number_io.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/nwrun_packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/opcaps.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/osdeps.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/packet_name.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/parsecfg.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/pathutl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/pollfds.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/polygon_packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/positions.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/positionsp.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/prepare.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/prepare_dflt.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/prepare_serve.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/printing.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/problem_common.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/problem_config.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/problem_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/problem_plugin_impl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/problem_xml.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/process_stats.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/protocol.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/r_stringset.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/random.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/rldb_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/run.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/run_packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/run_packet_priv.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/runlog.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/runlog_state.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/serve_state.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/server_framework.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/sformat.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/sha.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/sha256.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/sha256utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/shellcfg_parse.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/sock_op.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/startstop.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/str_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/stringset.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/super-serve.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/super_clnt.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/super_html.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/super_html_6.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/super_proto.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/super_run_packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/super_run_status.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/super_serve_pi.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/t3_packets.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/t3m_dir_listener.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/t3m_packet_class.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/t3m_submits.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/team_extra.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/teamdb.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/teamdb_priv.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/telegram.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/tempfile.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/testinfo.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/testing_report_xml.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/tex_dom.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/timestamp.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/tsc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/type_info.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/uldb_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/unix_fileutl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/userlist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/userlist_bin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/userlist_clnt.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/userlist_proto.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/variant_map.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/varsubst.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/vcs.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/version.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/watched_file.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/win32_compat.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/xalloc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/xfile.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/xml_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/xuser_plugin.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ejudge/zip_utils.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/errlog.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/execute.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/pathutl.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/random.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ru_ivmiit_executor_SafeExecutor.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/safe-executor.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/testinfo.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/xalloc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/SafeExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/libEjudgeExecutorDll.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/SafeExecutor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/enums/ExecutorLanguage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/enums/ExecutorPlatform.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/models/ExecutorResult$ExecutorResultBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/models/ExecutorResult.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/models/executors/CommonExecutor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/models/executors/CppCheckerExecutor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/models/executors/Executor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/models/executors/JavaExecutor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/models/executors/JavaWindowsExecutor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/utils/CommandLineUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/ru/ivmiit/executor/utils/FileUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/3.14.5/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/3.14.5/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/3.14.5/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/3.14.5/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/3.14.5/CompilerIdC/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/C.includecache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/DependInfo.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/build.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/cmake_clean.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/depend.internal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/flags.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/link.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/progress.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/compile.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/fileutl.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_checkaccess.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_errormsg.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_errorstring.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_exec.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_geterrorstring.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_getsignalstring.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_getworkingdir.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_isabsolutepath.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_isfile.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_logger.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_nodename.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_normalize_path.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_rgetworkingdir.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/errlog.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/execute.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/pathutl.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/random.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/testinfo.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutor.dir/src/main/c/ru/ivmiit/ejudge-executor/xalloc.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/C.includecache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/DependInfo.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/build.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/cmake_clean.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/depend.internal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/flags.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/link.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/progress.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/compile.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/fileutl.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_checkaccess.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_errormsg.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_errorstring.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_exec.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_geterrorstring.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_getsignalstring.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_getworkingdir.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_isabsolutepath.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_isfile.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_logger.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_nodename.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_normalize_path.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ejudge-reuse/reuse_rgetworkingdir.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/errlog.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/pathutl.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/random.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/ru_ivmiit_executor_SafeExecutor.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/testinfo.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/EjudgeExecutorDll.dir/src/main/c/ru/ivmiit/ejudge-executor/xalloc.c.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/Makefile2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/feature_tests.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/feature_tests.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/CMakeFiles/progress.marks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/EjudgeExecutor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/cmake-out/libEjudgeExecutorDll.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/executor-lib-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/headers/ru_ivmiit_executor_SafeExecutor.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/c-headers-generate/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/c-headers-generate/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/config/AppConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/config/JpaConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/controller/CreatorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/controller/ProfileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/controller/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/controller/TaskController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/forms/ImportTaskForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/forms/SolutionForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/forms/SolutionStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/forms/TaskForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/forms/TaskSampleForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/forms/TaskTestForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/forms/UserForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/forms/UserRegistrationForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/model/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/model/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/model/TaskCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/model/TaskSample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/model/TaskTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/repository/SolutionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/repository/TaskCategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/repository/TaskRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/repository/TaskSampleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/repository/TaskTestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/security/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/security/details/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/security/details/State.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/security/details/UserDetailsImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/security/details/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/security/provider/AuthProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/AdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/AdminServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/AuthenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/AuthenticationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/EmailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/PolygonService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/PolygonServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/RegistrationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/RegistrationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/SolutionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/SolutionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/TaskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/service/TaskServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/transfer/SolutionDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/transfer/TaskDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/transfer/TaskSampleDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/transfer/TaskTestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/transfer/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/utils/FileUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/utils/PasswordGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/utils/PolygonXmlParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/utils/TaskUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/utils/model/PolygonProblem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/utils/model/ProblemProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/utils/model/ProblemSampleTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/utils/model/ProblemTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/validators/SolutionFormValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/validators/TaskFormValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/validators/UserRegistrationFormValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/footer.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/executor/enums/ExecutorLanguage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/enums/ExecutorLanguage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/executor/enums/ExecutorPlatform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/enums/ExecutorPlatform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/executor/models/ExecutorResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/models/ExecutorResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/executor/models/executors/CommonExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/models/executors/CommonExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/executor/models/executors/CppCheckerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/models/executors/CppCheckerExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/executor/models/executors/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/models/executors/Executor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/executor/models/executors/JavaExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/models/executors/JavaExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/executor/models/executors/JavaWindowsExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/models/executors/JavaWindowsExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/executor/utils/CommandLineUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/utils/CommandLineUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/config/AppConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/config/AppInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/java/ru/ivmiit/web/config/AppInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/config/JpaConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/controller/CreatorController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/controller/ProfileController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/controller/RegistrationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/controller/TaskController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/forms/ImportTaskForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/forms/SolutionForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/forms/SolutionStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/forms/TaskForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/forms/TaskSampleForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/forms/TaskTestForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/forms/UserForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/forms/UserRegistrationForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/model/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/model/Solution.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/model/Task.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/model/TaskCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/model/TaskSample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/model/TaskTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/repository/RoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/repository/SolutionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/repository/TaskCategoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/repository/TaskRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/repository/TaskSampleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/repository/TaskTestRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/security/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/security/details/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/security/details/State.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/security/details/UserDetailsImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/security/details/UserDetailsServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/security/provider/AuthProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/AdminService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/AdminServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/AuthenticationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/EmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/EmailServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/PolygonService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/PolygonServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/RegistrationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/RegistrationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/SolutionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/SolutionServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/TaskService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/service/TaskServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/transfer/SolutionDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/transfer/TaskDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/transfer/TaskSampleDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/transfer/TaskTestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/transfer/UserDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ivmiit/executor/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/utils/PasswordGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/utils/PolygonXmlParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/utils/TaskUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/utils/model/PolygonProblem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/utils/model/ProblemProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/utils/model/ProblemSampleTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/utils/model/ProblemTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/validators/SolutionFormValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/validators/TaskFormValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ru/ivmiit/web/validators/UserRegistrationFormValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/js/jquery.autoresize.js" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/js/jquery.autoresize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/resources/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/resources/user.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/confirm_success.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/confirm_success.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/creator/index.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/creator/index.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/creator/polygon_import.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/creator/polygon_import.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/examples.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/examples.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/footer.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor/ru_ivmiit_executor_SafeExecutor.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/head.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/head.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/header.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/header.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/login.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/login.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/profile/all_solutions.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/profile/all_solutions.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/profile/profile.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/profile/profile.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/resources.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/resources.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/sign_up.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/sign_up.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/success_registration.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/success_registration.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/tasks/all_tasks.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/tasks/all_tasks.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/tasks/create_task.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/tasks/create_task.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/tasks/create_test.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/tasks/create_test.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/tasks/task_page.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/tasks/task_page.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/tasks/tests_page.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/main/resources/templates/tasks/tests_page.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/ExecutorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/test/java/ExecutorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/OutOfMemoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/test/java/OutOfMemoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/OutOfTimeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/test/java/OutOfTimeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/SecurityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/test/java/SecurityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/SimpleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/test/java/SimpleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/SumTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../executor-web/src/test/java/SumTest.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1T9p95g7T062f0YsfuwtNrblTPz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/c/ru/ivmiit/ejudge-executor" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="CMake Application.EjudgeExecutor">
+    <configuration name="EjudgeExecutor" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SafeExecutor" TARGET_NAME="EjudgeExecutor" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EjudgeExecutorDll" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SafeExecutor" TARGET_NAME="EjudgeExecutorDll" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.EjudgeExecutor" />
+      <item itemvalue="CMake Application.EjudgeExecutorDll" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cbc63025-e4db-498d-b095-d8880d868b35" name="Default Changelist" comment="" />
+      <created>1572882010341</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572882010341</updated>
+      <workItem from="1572882011532" duration="4609000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
