@@ -58,6 +58,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>ru.ivmiit.web.config.AppInitializer</start-class>
         <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
+        <executor-lib.directory>${basedir}/executor-lib</executor-lib.directory>
     </properties>
 
 

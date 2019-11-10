@@ -9,8 +9,10 @@ import java.io.OutputStream;
 
 public class NativeLoadUtils {
     /**
-     * Puts library to temp dir and loads to memory
+     * Копирует файл во временную папку и подгружает его
+     * Но пока это не работает
      */
+    @Deprecated
     public static void putLibToTmpAndLoad(String file) {
         try {
             InputStream in = NativeLoadUtils.class.getResourceAsStream(file);
