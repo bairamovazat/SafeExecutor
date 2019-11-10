@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.WebApplicationInitializer;
 
 @SpringBootApplication
-@ComponentScan("ru.ru.ivmiit.web")
+@ComponentScan("ru.ivmiit.web")
 @Import({AppConfiguration.class, JpaConfiguration.class})
 public class AppInitializer extends SpringBootServletInitializer implements WebApplicationInitializer {
 
