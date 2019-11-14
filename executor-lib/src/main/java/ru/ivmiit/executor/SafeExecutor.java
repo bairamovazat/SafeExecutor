@@ -26,7 +26,12 @@ public class SafeExecutor {
     private native int main(int argc, String[] argv);
 
     public static void main(String[] args) {
-        SafeExecutor safeExecutor = new SafeExecutor();
-        safeExecutor.main(0, new String[]{""});
+        try {
+            SafeExecutor safeExecutor = new SafeExecutor();
+            safeExecutor.main(1, new String[]{"--help"});
+        } catch ( Throwable e) {
+            e.printStackTrace();
+        }
+        int debug = 0;
     }
 }
