@@ -15,6 +15,7 @@ public class SafeExecutor {
         //      outputDirectory - ${project.build.directory}/classes
         //      directory - ${project.parent.basedir}/executor-lib/target/cmake-out
         //      include - **/*.so
+        //Эта шляпа не захотела заводиться через время видимо JNI тупит
         URL url = SafeExecutor.class.getClassLoader().getResource("libEjudgeExecutorDll.so");
         if(url == null) {
             throw new IllegalArgumentException("libEjudgeExecutorDll.so не найден");
@@ -28,8 +29,8 @@ public class SafeExecutor {
     public static void main(String[] args) {
         try {
             SafeExecutor safeExecutor = new SafeExecutor();
-            safeExecutor.main(1, new String[]{"--help"});
-        } catch ( Throwable e) {
+            safeExecutor.main(2, new String[]{"java", "-v"});
+        } catch (Throwable e) {
             e.printStackTrace();
         }
         int debug = 0;
