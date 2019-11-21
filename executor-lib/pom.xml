@@ -97,6 +97,7 @@
                                     <directory>${project.build.directory}/cmake-out</directory>
                                     <includes>
                                         <include>**/*.so</include>
+                                        <include>EjudgeExecutor</include>
                                     </includes>
                                 </resource>
                             </resources>

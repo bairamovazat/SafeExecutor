@@ -5,7 +5,8 @@ set(SRC_DIR src/main/c/ru/ivmiit/judge)
 set(ETC_DIR src/main/c/ru/ivmiit/etc)
 
 set(HEADERS target/headers)
-set(JVM_DIR /usr/lib/jvm/java-8-openjdk-amd64)
+set(JVM_DIR /usr/lib/jvm/java-11-openjdk-amd64)
+
 
 include_directories(ejudge)
 
@@ -34,3 +35,6 @@ add_executable(EjudgeExecutor ${SRC_LIST})
 
 target_link_libraries(EjudgeExecutor m)
 target_link_libraries(EjudgeExecutor cgroup)
+
+target_link_libraries(EjudgeExecutorDll m)
+target_link_libraries(EjudgeExecutorDll cgroup)
