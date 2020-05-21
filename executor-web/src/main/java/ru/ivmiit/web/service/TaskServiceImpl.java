@@ -13,8 +13,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import ru.ivmiit.executor.models.ExecutorResult;
-import ru.ivmiit.executor.models.executors.JavaExecutor;
 import ru.ivmiit.web.utils.FileUtils;
 import ru.ivmiit.web.utils.TaskUtils;
 
@@ -40,19 +38,11 @@ public class TaskServiceImpl implements TaskService {
     private TaskTestRepository taskTestRepository;
     @Autowired
     private TaskSampleRepository taskSampleRepository;
-    @Value("${execute.dir}")
-    private String executeDir;
-    @Value("${execute.ejudge}")
-    private String pathToEjudgeBin;
-    private JavaExecutor javaExecutor;
+//    private JavaExecutor javaExecutor;
 
 
-    public TaskServiceImpl(@Value("${execute.dir}") String executeDir, @Value("${execute.ejudge}") String pathToEjudgeBin) {
-        File file = new File(executeDir);
-        if (!file.exists()) {
-            throw new IllegalArgumentException("Execute dir not exist(" + executeDir + ")!");
-        }
-        javaExecutor = new JavaExecutor(pathToEjudgeBin);
+    public TaskServiceImpl() {
+
     }
 
     @Override
@@ -121,59 +111,59 @@ public class TaskServiceImpl implements TaskService {
             return;
         }
 
-        //TODO Обязательно оформить адекватно!!!
-        try {
-            solution.setStatus(SolutionStatus.PROCESSED);
-            saveOnNewTransact(solution);
-
-            String executeDirectory = TaskUtils.getFullPath(executeDir) + "/" + solution.getId();
-            File directory = new File(executeDirectory);
-            boolean resultDirectory = directory.mkdir();
-
-            File javaFile = new File(executeDirectory + "/Program.java");
-            boolean resultJavaFile = javaFile.createNewFile();
-
-            String program = solution.getCodeImport() + "\npublic class Program {\n" + solution.getCode() + "\n}";
-
-            FileUtils.writeToFile(javaFile.getAbsolutePath(), program, true);
-
-
-            ExecutorResult compileResult = javaExecutor.compileFile(
-                    javaFile.getAbsolutePath(),
-                    directory.getAbsolutePath());
-
-            if (!compileResult.isOk()) {
-                solution.setStatus(SolutionStatus.COMPILATION_ERROR);
-                saveOnNewTransact(solution);
-                return;
-            }
-
-
-            String classFilePath = "Program";
-            int current_test = 1;
-            for (TaskTest test : task.getTestList()) {
-                solution.setCurrentTest(current_test);
-                saveOnNewTransact(solution);
-
-                ExecutorResult result = javaExecutor.runFile(classFilePath, directory.getAbsolutePath(), test.getInputData(), task.getMaxTime(), task.getMaxMemory(), task.getMaxMemory());
-
-                if (!result.isOk()) {
-                    solution.setStatusFromString(result.getStatus());
-                    saveOnNewTransact(solution);
-                    return;
-                } else if (!result.resultEquals(test.outputData)) {
-                    solution.setStatus(SolutionStatus.WRONG_ANSWER);
-                    saveOnNewTransact(solution);
-                    return;
-                }
-            }
-            solution.setStatus(SolutionStatus.ACCEPTED);
-            saveOnNewTransact(solution);
-            return;
-        } catch (IOException ignore) {
-            solution.setStatus(SolutionStatus.WRONG_ANSWER);
-            saveOnNewTransact(solution);
-        }
+//        //TODO Обязательно оформить адекватно!!!
+//        try {
+//            solution.setStatus(SolutionStatus.PROCESSED);
+//            saveOnNewTransact(solution);
+//
+//            String executeDirectory = TaskUtils.getFullPath(executeDir) + "/" + solution.getId();
+//            File directory = new File(executeDirectory);
+//            boolean resultDirectory = directory.mkdir();
+//
+//            File javaFile = new File(executeDirectory + "/Program.java");
+//            boolean resultJavaFile = javaFile.createNewFile();
+//
+//            String program = solution.getCodeImport() + "\npublic class Program {\n" + solution.getCode() + "\n}";
+//
+//            FileUtils.writeToFile(javaFile.getAbsolutePath(), program, true);
+//
+//
+//            ExecutorResult compileResult = javaExecutor.compileFile(
+//                    javaFile.getAbsolutePath(),
+//                    directory.getAbsolutePath());
+//
+//            if (!compileResult.isOk()) {
+//                solution.setStatus(SolutionStatus.COMPILATION_ERROR);
+//                saveOnNewTransact(solution);
+//                return;
+//            }
+//
+//
+//            String classFilePath = "Program";
+//            int current_test = 1;
+//            for (TaskTest test : task.getTestList()) {
+//                solution.setCurrentTest(current_test);
+//                saveOnNewTransact(solution);
+//
+//                ExecutorResult result = javaExecutor.runFile(classFilePath, directory.getAbsolutePath(), test.getInputData(), task.getMaxTime(), task.getMaxMemory(), task.getMaxMemory());
+//
+//                if (!result.isOk()) {
+//                    solution.setStatusFromString(result.getStatus());
+//                    saveOnNewTransact(solution);
+//                    return;
+//                } else if (!result.resultEquals(test.outputData)) {
+//                    solution.setStatus(SolutionStatus.WRONG_ANSWER);
+//                    saveOnNewTransact(solution);
+//                    return;
+//                }
+//            }
+//            solution.setStatus(SolutionStatus.ACCEPTED);
+//            saveOnNewTransact(solution);
+//            return;
+//        } catch (IOException ignore) {
+//            solution.setStatus(SolutionStatus.WRONG_ANSWER);
+//            saveOnNewTransact(solution);
+//        }
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)

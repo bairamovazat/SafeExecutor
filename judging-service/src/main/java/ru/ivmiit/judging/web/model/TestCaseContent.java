@@ -36,4 +36,7 @@ public class TestCaseContent {
     @Lob
     @Column(name = "image_thumb")
     private String imageThumb;
+
+    @OneToOne(mappedBy = "testCaseContent")
+    private TestCase testCase;
 }

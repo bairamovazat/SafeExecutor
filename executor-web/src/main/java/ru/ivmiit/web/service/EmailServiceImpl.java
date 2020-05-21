@@ -1,6 +1,8 @@
 package ru.ivmiit.web.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
+@Slf4j
 public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender javaMailSender;
@@ -30,7 +33,10 @@ public class EmailServiceImpl implements EmailService {
         } catch (MessagingException e) {
             throw new IllegalArgumentException(e);
         }
-
-        javaMailSender.send(message);
+        try {
+            javaMailSender.send(message);
+        } catch (MailException e) {
+            log.error("Send mail error", e);
+        }
     }
 }
