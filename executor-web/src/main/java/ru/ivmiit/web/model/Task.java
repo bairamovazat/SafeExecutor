@@ -19,7 +19,7 @@ public class Task {
     private Long id;
     @Column(length = 255)
     private String name;
-    @Column(length = 1023)
+    @Column(length = 1024)
     private String description;
 
     private Integer maxTime;

@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-@ComponentScan("ru.ru.ivmiit.web")
+@ComponentScan("ru.ivmiit.web")
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

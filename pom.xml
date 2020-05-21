@@ -10,7 +10,6 @@
     <modules>
         <module>judgehost-connector</module>
         <module>judging-service</module>
-        <module>executor-lib</module>
         <module>executor-web</module>
     </modules>
     <packaging>pom</packaging>
@@ -24,15 +23,13 @@
     <profiles>
         <profile>
             <id>war</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <properties>
+                <packaging.type>war</packaging.type>
+            </properties>
             <dependencies>
-                <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-web</artifactId>
-                    <version>${spring-boot.version}</version>
                     <exclusions>
                         <exclusion>
                             <groupId>org.springframework.boot</groupId>
@@ -42,16 +39,15 @@
                 </dependency>
             </dependencies>
         </profile>
+
         <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <id>jar</id>
-            <dependencies>
-                <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-web</artifactId>
-                    <version>${spring-boot.version}</version>
-                </dependency>
-            </dependencies>
+            <properties>
+                <packaging.type>jar</packaging.type>
+            </properties>
         </profile>
     </profiles>
 
@@ -94,6 +90,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
 

@@ -22,8 +22,8 @@ import java.util.Map;
 @Configuration
 @PropertySource("classpath:application.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"ru.ru.ivmiit.web.repository"})
-@EntityScan(basePackages = "ru.ru.ivmiit.web.model")
+@EnableJpaRepositories(basePackages = {"ru.ivmiit.web.repository"})
+@EntityScan(basePackages = "ru.ivmiit.web.model")
 public class JpaConfiguration {
 
     @Value("${spring.datasource.driver-class-name}")
@@ -42,7 +42,7 @@ public class JpaConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        factoryBean.setPackagesToScan("ru.ru.ivmiit.web.model");
+        factoryBean.setPackagesToScan("ru.ivmiit.web.model");
         factoryBean.setDataSource(driverManagerDataSource());
         factoryBean.setBootstrapExecutor(new SimpleAsyncTaskExecutor("jpa-bootstrap"));
         factoryBean.setJpaPropertyMap(getJpaPropertyMap());

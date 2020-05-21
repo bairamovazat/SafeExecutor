@@ -46,4 +46,8 @@ public class TestCase {
     @Column(name = "original_input_file_name")
     private String originalInputFileName;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "testcase_content_id")
+    private TestCaseContent testCaseContent;
+
 }
