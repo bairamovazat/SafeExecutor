@@ -8,6 +8,8 @@
     <artifactId>executor</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>judgehost-connector</module>
+        <module>judging-service</module>
         <module>executor-lib</module>
         <module>executor-web</module>
     </modules>
@@ -58,7 +60,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>ru.ivmiit.web.config.AppInitializer</start-class>
         <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
-        <executor-lib.directory>${basedir}/executor-lib</executor-lib.directory>
     </properties>
 
 
