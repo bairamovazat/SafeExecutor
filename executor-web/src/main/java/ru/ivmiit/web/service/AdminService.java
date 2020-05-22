@@ -1,6 +1,6 @@
 package ru.ivmiit.web.service;
 
-import ru.ivmiit.web.model.User;
+import ru.ivmiit.web.model.autorization.User;
 
 import java.util.List;
 

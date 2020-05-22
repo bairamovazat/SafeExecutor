@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.ivmiit.web.model.User;
+import ru.ivmiit.web.model.autorization.User;
 import ru.ivmiit.web.security.details.Role;
 import ru.ivmiit.web.security.details.State;
 
@@ -29,7 +29,7 @@ public class UserDto {
                 .id(user.getId())
                 .name(user.getName())
                 .login(user.getLogin())
-                .roles(user.getRoles().stream().map(ru.ivmiit.web.model.Role::getRole).collect(Collectors.toList()))
+                .roles(user.getRoles().stream().map(ru.ivmiit.web.model.autorization.Role::getRole).collect(Collectors.toList()))
                 .state(user.getState())
                 .email(user.getEmail())
                 .build();

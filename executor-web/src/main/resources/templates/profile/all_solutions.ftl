@@ -22,13 +22,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <#list model.solutions as solution>
+                <#list model.solutions as submission>
                 <tr>
-                    <th scope="row"><a href="${solution.id}">${solution.id!}</a></th>
-                    <td>${solution.task.name!}</td>
-                    <td>${solution.task.category!}</td>
-                    <td>${solution.task.complexity!}</td>
-                    <td>${solution.status!}</td>
+                    <th scope="row"><a href="${submission.id}">${submission.id!}</a></th>
+                    <td>${submission.problem.name!}</td>
+                    <td>${submission.problem.category!}</td>
+                    <td>${submission.problem.complexity!}</td>
+                    <td>${submission.status!}</td>
                 </tr>
                 </#list>
                 </tbody>

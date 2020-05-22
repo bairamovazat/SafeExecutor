@@ -1,7 +1,7 @@
 package ru.ivmiit.domjudge.connector.utils;
 
 import java.util.HashMap;
-
+@Deprecated
 public class ConfigInMemoryUtils {
     public static HashMap<String, Object> getConfig() {
         HashMap<String, Object> config = new HashMap<>();

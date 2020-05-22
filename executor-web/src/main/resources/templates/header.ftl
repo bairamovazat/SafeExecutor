@@ -11,7 +11,7 @@
         <ul class="navbar-nav">
 
             <li class="nav-item">
-                <a class="nav-link" href="<@spring.url "/"/>tasks/all">Задачи</a>
+                <a class="nav-link" href="<@spring.url "/"/>problems/all">Задачи</a>
             </li>
 
             <#if model.user.isPresent()>

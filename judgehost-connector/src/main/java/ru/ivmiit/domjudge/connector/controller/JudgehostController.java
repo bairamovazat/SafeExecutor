@@ -1,5 +1,10 @@
 package ru.ivmiit.domjudge.connector.controller;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -11,11 +16,16 @@ import org.springframework.web.bind.annotation.*;
 import ru.ivmiit.domjudge.connector.service.JudgehostService;
 import ru.ivmiit.domjudge.connector.transfer.*;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
 @RequestMapping("/judgehost/api")
+@Slf4j
 public class JudgehostController {
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private JudgehostService judgehostService;
@@ -74,7 +84,16 @@ public class JudgehostController {
     @PutMapping(value = "/judgehosts/update-judging/{judgehostName}/{judgingId}",
             consumes = "application/x-www-form-urlencoded;charset=UTF-8")
     public void updateJudging(@PathVariable("judgehostName") String judgehostName,
-                              @PathVariable("judgingId") Long judgingId, UpdateJudgingDto updateJudgingDto) {
+                              @PathVariable("judgingId") Long judgingId,
+                              @RequestParam(value = "compile_success", required = false) Integer compileSuccess,
+                              @RequestParam(value = "output_compile", required = false) String outputCompile,
+                              @RequestParam(value = "entry_point", required = false) String entryPoint,
+                              HashMap<Object, Object> data) {
+        UpdateJudgingDto updateJudgingDto = UpdateJudgingDto.builder()
+                .compileSuccess(compileSuccess)
+                .outputCompile(outputCompile)
+                .entryPoint(entryPoint)
+                .build();
         judgehostService.updateJudging(judgehostName, judgingId, updateJudgingDto);
     }
 
@@ -102,7 +121,15 @@ public class JudgehostController {
     @PostMapping(value = "/judgehosts/add-judging-run/{hostname}/{judgingId}",
             consumes = "application/x-www-form-urlencoded;charset=UTF-8")
     public Integer addJudgingRun(@PathVariable("hostname") String hostName, @PathVariable("judgingId") Long judgingId,
-                                 AddJudgingRunDto addJudgingRunDto) {
-        return judgehostService.addJudgingRun(hostName, judgingId, addJudgingRunDto);
+                                 AddJudgingRunWrapperDto batch) {
+        try {
+            List<AddJudgingRunDto> list = objectMapper.readValue(batch.getBatch(),
+                    new TypeReference<List<AddJudgingRunDto>>() {});
+            return judgehostService.addJudgingRun(hostName, judgingId, list);
+
+        } catch (IOException e) {
+            log.error("Jackson mapper error", e);
+        }
+        return 0;
     }
 }

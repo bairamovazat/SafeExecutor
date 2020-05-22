@@ -3,19 +3,19 @@ package ru.ivmiit.web.validators;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.ivmiit.web.forms.TaskForm;
+import ru.ivmiit.web.transfer.ProblemDto;
 
 @Component
 public class TaskFormValidator implements Validator {
     @Override
     public boolean supports(Class<?> aClass) {
-        return aClass.getName().equals(TaskForm.class.getName());
+        return aClass.getName().equals(ProblemDto.class.getName());
     }
 
     @Override
     public void validate(Object o, Errors errors) {
-        TaskForm form = (TaskForm) o;
-        form.trim();
+        ProblemDto form = (ProblemDto) o;
+//        form.trim();
 
         if(form.getName().length() < 3 ||  form.getName().length() > 128){
             errors.reject("bad.name", "Логин должен быть от 3 до 128 символов");

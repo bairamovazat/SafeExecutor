@@ -1,0 +1,5 @@
+package ru.ivmiit.web.model;
+
+public enum SubmissionStatus {
+    CREATED, WRONG_ANSWER, EMPTY_TEST, TEST_ERROR, TIME_LIMIT_EXCEPTED, MEMORY_EXCEPTED, COMPILATION_ERROR, PROCESSED, ACCEPTED;
+}

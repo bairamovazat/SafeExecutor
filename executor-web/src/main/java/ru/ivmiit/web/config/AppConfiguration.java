@@ -16,18 +16,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @EnableAsync
 @PropertySource(value = "classpath:application.properties")
-@Import(value = {JpaConfiguration.class})
 public class AppConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/js/**") //
-                .addResourceLocations("/WEB-INF/classes/js/").setCachePeriod(31556926);
-        registry.addResourceHandler("/css/**") //
-                .addResourceLocations("/WEB-INF/classes/css/").setCachePeriod(31556926);
-        registry.addResourceHandler("/resources/**") //
-                .addResourceLocations("/WEB-INF/classes/resources/").setCachePeriod(31556926);
+        registry.addResourceHandler("/js/**")
+                .addResourceLocations("/WEB-INF/classes/js/");
+        registry.addResourceHandler("/css/**")
+                .addResourceLocations("/WEB-INF/classes/css/");
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/WEB-INF/classes/resources/");
     }
 
     @Bean("threadPoolTaskExecutor")
