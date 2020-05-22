@@ -27,6 +27,9 @@ public class AddJudgingRunDto {
     @JsonProperty(value ="output_error")
     private String outputError;
 
+    @JsonProperty(value ="output_diff")
+    private String outputDiff;
+
     @JsonProperty(value ="output_system")
     private String outputSystem;
 

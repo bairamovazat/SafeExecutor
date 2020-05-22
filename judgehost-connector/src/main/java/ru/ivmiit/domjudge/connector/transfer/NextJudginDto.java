@@ -49,13 +49,13 @@ public class NextJudginDto {
     private Long originalSubmitId;
 
     @JsonProperty(value = "maxruntime")
-    private Long maxRuntime;
+    private Float maxRuntime;
 
     @JsonProperty(value = "memlimit")
-    private Long memLimit;
+    private Integer memLimit;
 
     @JsonProperty(value = "outputlimit")
-    private Long outputLimit;
+    private Integer outputLimit;
 
     @JsonProperty(value = "run")
     private String run;

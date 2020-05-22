@@ -6,7 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import ru.ivmiit.web.forms.UserRegistrationForm;
-import ru.ivmiit.web.model.User;
+import ru.ivmiit.web.model.autorization.User;
 import ru.ivmiit.web.repository.UserRepository;
 
 import java.util.Optional;

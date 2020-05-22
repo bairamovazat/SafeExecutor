@@ -2,6 +2,7 @@ package ru.ivmiit.domjudge.connector.utils;
 
 import java.util.HashMap;
 
+@Deprecated
 public class ExecutablesInMemoryUtils {
 
     public static HashMap<String, String> getExecutables() {

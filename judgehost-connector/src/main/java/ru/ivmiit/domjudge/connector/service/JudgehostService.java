@@ -23,5 +23,5 @@ public interface JudgehostService {
 
     Integer internalError(InternalErrorDto internalErrorDto);
 
-    Integer addJudgingRun(String hostName, Long judgingId, AddJudgingRunDto addJudgingRunDto);
+    Integer addJudgingRun(String hostName, Long judgingId, List<AddJudgingRunDto> addJudgingRunDtoList);
 }

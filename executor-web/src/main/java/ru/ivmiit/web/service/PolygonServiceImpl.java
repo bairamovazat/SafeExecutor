@@ -1,14 +1,13 @@
 package ru.ivmiit.web.service;
 
-import ru.ivmiit.web.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import ru.ivmiit.web.model.Task;
-import ru.ivmiit.web.model.TaskSample;
-import ru.ivmiit.web.model.TaskTest;
+import ru.ivmiit.web.model.Problem;
+import ru.ivmiit.web.model.TestCase;
+import ru.ivmiit.web.repository.ProblemRepository;
 import ru.ivmiit.web.utils.FileUtils;
 import ru.ivmiit.web.utils.PolygonXmlParser;
 import ru.ivmiit.web.utils.TaskUtils;
@@ -31,7 +30,7 @@ public class PolygonServiceImpl implements PolygonService {
     private String unzipPolygonDir;
 
     @Autowired
-    private TaskRepository taskRepository;
+    private ProblemRepository taskRepository;
 
     public PolygonServiceImpl(@Value("${unzip.dir}") String unzipPolygonDir) {
         File unzipDir = new File(unzipPolygonDir);
@@ -43,14 +42,14 @@ public class PolygonServiceImpl implements PolygonService {
 
     @Transactional
     @Override
-    public Task createAndSaveFromPolygonZip(MultipartFile multipartFile) {
-        Task task = createTaskFromPolygonZip(multipartFile);
-        taskRepository.save(task);
-        return task;
+    public Problem createAndSaveFromPolygonZip(MultipartFile multipartFile) {
+        Problem problem = createTaskFromPolygonZip(multipartFile);
+        taskRepository.save(problem);
+        return problem;
     }
 
     @Override
-    public Task createTaskFromPolygonZip(MultipartFile multipartFile) {
+    public Problem createTaskFromPolygonZip(MultipartFile multipartFile) {
         try {
             return createTaskFromPolygonZip(multipartFile.getInputStream());
         } catch (IOException e) {
@@ -58,7 +57,7 @@ public class PolygonServiceImpl implements PolygonService {
         }
     }
 
-    public Task createTaskFromPolygonZip(InputStream inputStream) {
+    public Problem createTaskFromPolygonZip(InputStream inputStream) {
         String unzipDirectoryPath = TaskUtils.getFullPath(unzipPolygonDir) + "/" + unzipCount++;
         File directory = new File(unzipDirectoryPath);
         if (directory.exists()) {
@@ -83,7 +82,7 @@ public class PolygonServiceImpl implements PolygonService {
         return createTaskFromPolygonProblem(problem);
     }
 
-    public Task createTaskFromPolygonProblem(PolygonProblem polygonProblem) {
+    public Problem createTaskFromPolygonProblem(PolygonProblem polygonProblem) {
 
         String taskName = polygonProblem.getNames().get("russian");
 
@@ -115,28 +114,23 @@ public class PolygonServiceImpl implements PolygonService {
         }
 
 
-        Task task = Task.builder()
+        Problem problem = Problem.builder()
                 .name(taskName)
                 .description(description)
-                .maxTime(polygonProblem.getTimeLimit())
-                .maxRealTime(polygonProblem.getTimeLimit() / 100)
-                .maxMemory(polygonProblem.getMemoryLimit() / 1024 / 1024)
-                .complexity(1)
+//                .maxTime(polygonProblem.getTimeLimit())
+//                .maxRealTime(polygonProblem.getTimeLimit() / 100)
+//                .maxMemory(polygonProblem.getMemoryLimit() / 1024 / 1024)
+//                .complexity(1)
                 .inputDescription(problemProperties.getInput())
                 .outputDescription(problemProperties.getOutput())
-                .testList(
+                .testCases(
                         problemTestList.stream()
-                        .map(TaskTest::from)
-                        .collect(Collectors.toList())
-                )
-                .sampleList(
-                        problemProperties.getSampleTests()
-                                .stream()
-                                .map(TaskSample::from)
+                                .map(TestCase::from)
                                 .collect(Collectors.toList())
                 )
+
                 .build();
-        return task;
+        return problem;
 
     }
 

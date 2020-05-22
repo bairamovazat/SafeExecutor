@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ivmiit.web.forms.UserRegistrationForm;
-import ru.ivmiit.web.model.User;
+import ru.ivmiit.web.model.autorization.User;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -41,7 +41,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                 .roles(new ArrayList<>())
                 .uuid(uuid)
                 .build();
-        ru.ivmiit.web.model.Role role = roleRepository.findFirstByRole(Role.USER);
+        ru.ivmiit.web.model.autorization.Role role = roleRepository.findFirstByRole(Role.USER);
         role.getUsers().add(newUser);
         newUser.getRoles().add(role);
         emailService.sendMail("Здравствуйте, чтобы продтвердить аккаунт перейдите по: http://localhost:8080/confirm/" + uuid,"Подтверждение аккаунта",userForm.getEmail());

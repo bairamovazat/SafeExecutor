@@ -3,7 +3,7 @@ package ru.ivmiit.web.security.details;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.ivmiit.web.model.User;
+import ru.ivmiit.web.model.autorization.User;
 
 import java.util.Collection;
 import java.util.List;

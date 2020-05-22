@@ -8,15 +8,23 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <description>Все классы, которые могут использоваться в judgehost</description>
     <artifactId>judging-service</artifactId>
 
 
     <dependencies>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/javax.persistence/persistence-api &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>javax.persistence</groupId>-->
+<!--            <artifactId>persistence-api</artifactId>-->
+<!--            <version>1.0.2</version>-->
+<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
+
     </dependencies>
 </project>

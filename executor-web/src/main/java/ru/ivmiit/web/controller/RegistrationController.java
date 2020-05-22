@@ -10,7 +10,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.ivmiit.web.forms.UserRegistrationForm;
-import ru.ivmiit.web.model.User;
+import ru.ivmiit.web.model.autorization.User;
 import ru.ivmiit.web.security.details.State;
 import ru.ivmiit.web.service.AuthenticationService;
 import ru.ivmiit.web.service.RegistrationService;

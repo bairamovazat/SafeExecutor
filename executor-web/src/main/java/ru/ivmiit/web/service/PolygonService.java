@@ -2,13 +2,13 @@ package ru.ivmiit.web.service;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import ru.ivmiit.web.model.Task;
+import ru.ivmiit.web.model.Problem;
 
 import java.io.IOException;
 
 public interface PolygonService {
     @Transactional
-    Task createAndSaveFromPolygonZip(MultipartFile multipartFile);
+    Problem createAndSaveFromPolygonZip(MultipartFile multipartFile);
 
-    Task createTaskFromPolygonZip(MultipartFile multipartFile) throws IOException;
+    Problem createTaskFromPolygonZip(MultipartFile multipartFile) throws IOException;
 }

@@ -1,12 +1,12 @@
 package ru.ivmiit.web.service;
 
-import ru.ivmiit.web.repository.SolutionRepository;
+import ru.ivmiit.web.repository.SubmissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.ivmiit.web.model.Solution;
-import ru.ivmiit.web.model.User;
+import ru.ivmiit.web.model.Submission;
+import ru.ivmiit.web.model.autorization.User;
 import ru.ivmiit.web.utils.TaskUtils;
 
 import java.util.List;
@@ -22,19 +22,19 @@ public class SolutionServiceImpl implements SolutionService {
     private AuthenticationService authenticationService;
 
     @Autowired
-    private SolutionRepository solutionRepository;
+    private SubmissionRepository submissionRepository;
 
     @Override
     @Transactional
-    public List<Solution> getTasks(int page) {
+    public List<Submission> getTasks(int page) {
         return getTasks(page, defaultElementsInPage);
     }
 
     @Override
     @Transactional
-    public List<Solution> getTasks(int page, int count) {
+    public List<Submission> getTasks(int page, int count) {
         User user = authenticationService.getCurrentUser();
-        return solutionRepository.findAllByAuthorOrderByIdDesc(user, PageRequest.of(page, count)).getContent();
+        return submissionRepository.findAllByAuthorOrderByIdDesc(user, PageRequest.of(page, count)).getContent();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class SolutionServiceImpl implements SolutionService {
     @Transactional
     public List<Integer> getPageList(int currentPage, int elementsInPage) {
         User user = authenticationService.getCurrentUser();
-        int pageCount = (int) Math.ceil(((double) solutionRepository.countAllByAuthor(user)) / elementsInPage);
+        int pageCount = (int) Math.ceil(((double) submissionRepository.countAllByAuthor(user)) / elementsInPage);
         int maxPage = pageCount - 1;
         return TaskUtils.getPageList(currentPage, paginationPagesCount, maxPage);
     }
