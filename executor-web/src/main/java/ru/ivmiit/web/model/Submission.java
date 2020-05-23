@@ -1,9 +1,11 @@
 package ru.ivmiit.web.model;
 
 import lombok.*;
+import ru.ivmiit.web.model.autorization.Role;
 import ru.ivmiit.web.model.autorization.User;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -36,19 +38,17 @@ public class Submission {
     @JoinColumn(name="user_id")
     private User author;
 
-//    public static Submission from(SolutionForm solutionForm){
-//        return Submission.builder()
-//                .source(solutionForm.getCodeImport())
-//                .status(SolutionStatus.CREATED)
-//                .build();
-//    }
-//
-//    public void setStatusFromString(String status){
-//        SolutionStatus solutionStatus = SolutionStatus.fromString(status);
-//        if(solutionStatus == null){
-//            this.setStatus(SolutionStatus.WRONG_ANSWER);
-//        }else{
-//            this.setStatus(solutionStatus);
-//        }
-//    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "submission_test_case",
+            joinColumns = @JoinColumn(
+                    name = "submission_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "test_case_id", referencedColumnName = "id"))
+    private List<TestCase> passedTestCases;
+
+    //-1 - все
+    //0 - ещё не проверялось или ни один тест не сдан
+    private Integer passedTestCount = 0;
+
 }

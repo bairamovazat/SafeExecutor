@@ -2,6 +2,7 @@ package ru.ivmiit.web.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -9,11 +10,9 @@ import ru.ivmiit.domjudge.connector.service.JudgehostService;
 import ru.ivmiit.domjudge.connector.transfer.*;
 import ru.ivmiit.domjudge.connector.utils.ConfigInMemoryUtils;
 import ru.ivmiit.domjudge.connector.utils.ExecutablesInMemoryUtils;
-import ru.ivmiit.web.model.Judging;
-import ru.ivmiit.web.model.Submission;
-import ru.ivmiit.web.model.SubmissionStatus;
-import ru.ivmiit.web.model.TestCase;
+import ru.ivmiit.web.model.*;
 import ru.ivmiit.web.repository.JudgingRepository;
+import ru.ivmiit.web.repository.ProblemRepository;
 import ru.ivmiit.web.repository.SubmissionRepository;
 import ru.ivmiit.web.repository.TestCaseRepository;
 import ru.ivmiit.web.utils.EncoderUtils;
@@ -41,6 +40,12 @@ public class JudgehostServiceImpl implements JudgehostService {
     @Autowired
     private TestCaseRepository testCaseRepository;
 
+    @Autowired
+    private TaskExecutor taskExecutor;
+
+    @Autowired
+    private ProblemRepository problemRepository;
+
     @Override
     public Object getConfig(String name) {
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -57,7 +62,7 @@ public class JudgehostServiceImpl implements JudgehostService {
             Submission submission = submissionRepository.getOne(submissionId);
             Judging judging = Judging.builder()
                     .submission(submission)
-                    .result(null)
+                    .compileSuccess(null)
                     .verified(false)
                     .juryMember(null)
                     .verifyComment(null)
@@ -77,7 +82,7 @@ public class JudgehostServiceImpl implements JudgehostService {
                 .submissionFileId(submission.getId().toString())
                 .submissionId(submission.getId().toString())
                 .filename("Program.java")
-                .source(EncoderUtils.getBase64(submission.getSource()))
+                .source(EncoderUtils.encodeBase64(submission.getSource()))
                 .build());
     }
 
@@ -85,7 +90,7 @@ public class JudgehostServiceImpl implements JudgehostService {
     @Transactional
     public NextJudginDto nextJudging(String judgehostName) {
         Submission submission = getNextSubmission();
-        if(submission == null) {
+        if (submission == null) {
             return null;
         }
         Judging judging = createNewJudging(submission.getId());
@@ -134,7 +139,12 @@ public class JudgehostServiceImpl implements JudgehostService {
     }
 
     @Override
+    @Transactional
     public void updateJudging(String judgehostName, Long judgingId, UpdateJudgingDto updateJudgingDto) {
+        Judging judging = judgingRepository.getOne(judgingId);
+        UpdateJudgingDto decodedDto = updateJudgingDto.getDecoded();
+        judging.setCompileSuccess(decodedDto.getCompileSuccess().equals("1"));
+        judging.setOutputCompile(decodedDto.getOutputCompile());
         log.info("UpdateJudgingDto: " + updateJudgingDto.toString() + ", judgehostName: " + judgehostName + ", judgingId: " + judgingId);
     }
 
@@ -142,18 +152,18 @@ public class JudgehostServiceImpl implements JudgehostService {
     @Transactional
     public String getInputTestCaseId(Long testCaseId) {
         TestCase testCase = testCaseRepository.getOne(testCaseId);
-        return "\"" + EncoderUtils.getBase64(testCase.getInputData()) + "\"";
+        return "\"" + EncoderUtils.encodeBase64(testCase.getInputData()) + "\"";
     }
 
     @Override
     public String getOutputTestCaseId(Long testCaseId) {
         TestCase testCase = testCaseRepository.getOne(testCaseId);
-        return "\"" + EncoderUtils.getBase64(testCase.getOutputData()) + "\"";
+        return "\"" + EncoderUtils.encodeBase64(testCase.getOutputData()) + "\"";
     }
 
     @Override
     public List<JudgehostsDto> registerJudgehosts() {
-        return new ArrayList<JudgehostsDto>();
+        return new ArrayList<>();
     }
 
     @Override
@@ -169,7 +179,59 @@ public class JudgehostServiceImpl implements JudgehostService {
 
     @Override
     public Integer addJudgingRun(String hostName, Long judgingId, List<AddJudgingRunDto> addJudgingRunDtoList) {
-        log.info(addJudgingRunDtoList.stream().map(AddJudgingRunDto::toString).collect(Collectors.joining(", ")));
+        addJudgingRunDtoList.forEach(addJudgingRunDto -> taskExecutor.execute(createAddJudgingRunRunnable(judgingId, addJudgingRunDto)));
+        log.info(addJudgingRunDtoList.stream()
+                .map(judgingRun -> judgingRun.getDecoded().toString())
+                .collect(Collectors.joining(", ")));
         return Math.toIntExact(System.currentTimeMillis() % 1000);
+    }
+
+    private Runnable createAddJudgingRunRunnable(Long judgingId, AddJudgingRunDto addJudgingRunDto) {
+        return () -> {
+            transactionTemplate.execute(transactionStatus -> {
+                SubmissionStatus submissionStatus =
+                        SubmissionStatus.getStatusFromDomjudgeStatus(addJudgingRunDto.getRunResult());
+
+                Judging judging = judgingRepository.getOne(judgingId);
+                TestCase testCase = testCaseRepository.getOne(addJudgingRunDto.getTestcaseId());
+
+                //TODO как-то криво выглядит. Изменить.
+                Submission submission = submissionRepository.findFirstByIdAndLock(judging.getSubmission().getId());
+                Problem problem = submission.getProblem();
+
+                if (!testCase.getProblem().getId().equals(problem.getId())) {
+                    log.error("TestCase problem id (" + testCase.getProblem().getId() + ")" +
+                            " not equals to testcaseId(" + problem.getId() + ")");
+                }
+
+                List<TestCase> testCases = problem.getTestCases();
+
+                if (submissionStatus != SubmissionStatus.CORRECT) {
+                    submission.setStatus(submissionStatus);
+                    return submission;
+                }
+                submission.getPassedTestCases().add(testCase);
+
+                if (testCases.size() == submission.getPassedTestCases().size()) {
+                    List<Long> testCasesIdList = problem.getTestCases()
+                            .stream()
+                            .map(TestCase::getId)
+                            .collect(Collectors.toList());
+
+                    List<Long> passedTestIdList = submission.getPassedTestCases()
+                            .stream()
+                            .map(TestCase::getId)
+                            .collect(Collectors.toList());
+                    if (passedTestIdList.containsAll(testCasesIdList)) {
+                        submission.setStatus(SubmissionStatus.CORRECT);
+                    } else {
+                        log.error("Unforeseen situation arrays not equals," +
+                                " testCasesIdList: " + testCasesIdList.toString()
+                                + " passedTestIdList: " + passedTestIdList.toString());
+                    }
+                }
+                return submission;
+            });
+        };
     }
 }

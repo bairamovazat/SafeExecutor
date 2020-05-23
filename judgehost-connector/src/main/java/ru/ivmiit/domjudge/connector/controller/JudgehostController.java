@@ -15,10 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ivmiit.domjudge.connector.service.JudgehostService;
 import ru.ivmiit.domjudge.connector.transfer.*;
+import ru.ivmiit.domjudge.connector.utils.UrlUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/judgehost/api")
@@ -85,14 +89,22 @@ public class JudgehostController {
             consumes = "application/x-www-form-urlencoded;charset=UTF-8")
     public void updateJudging(@PathVariable("judgehostName") String judgehostName,
                               @PathVariable("judgingId") Long judgingId,
-                              @RequestParam(value = "compile_success", required = false) Integer compileSuccess,
-                              @RequestParam(value = "output_compile", required = false) String outputCompile,
-                              @RequestParam(value = "entry_point", required = false) String entryPoint,
-                              HashMap<Object, Object> data) {
+                              HttpServletRequest httpServletRequest) {
+        //Хардкод, т.к Put не поддерживает formData
+        String body;
+        try {
+            body = httpServletRequest.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        } catch (IOException e) {
+            body = "";
+            log.error("Pars request error", e);
+        }
+        Map<String, String> keyValues = UrlUtils.splitQueryParameter(body);
+
+        String outputCompile = keyValues.get("output_compile");
         UpdateJudgingDto updateJudgingDto = UpdateJudgingDto.builder()
-                .compileSuccess(compileSuccess)
-                .outputCompile(outputCompile)
-                .entryPoint(entryPoint)
+                .compileSuccess(keyValues.get("compile_success"))
+                .outputCompile(keyValues.get("output_compile"))
+                .entryPoint(keyValues.get("entry_point"))
                 .build();
         judgehostService.updateJudging(judgehostName, judgingId, updateJudgingDto);
     }

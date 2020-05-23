@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.ivmiit.domjudge.connector.utils.Base64Utils;
 
 @Data
 @AllArgsConstructor
@@ -35,5 +36,18 @@ public class AddJudgingRunDto {
 
     @JsonProperty(value ="metadata")
     private String metaData;
+
+    public AddJudgingRunDto getDecoded() {
+        return AddJudgingRunDto.builder()
+                .testcaseId(this.getTestcaseId())
+                .runResult(this.getRunResult())
+                .runtime(this.getRuntime())
+                .outputRun(Base64Utils.decode(this.getOutputRun()))
+                .outputError(Base64Utils.decode(this.getOutputError()))
+                .outputDiff(Base64Utils.decode(this.getOutputDiff()))
+                .outputSystem(Base64Utils.decode(this.getOutputSystem()))
+                .metaData(Base64Utils.decode(this.getMetaData()))
+                .build();
+    }
 
 }

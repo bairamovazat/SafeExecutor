@@ -28,8 +28,8 @@ public class Judging {
     @JoinColumn(name = "submission_id")
     private Submission submission;
 
-    @Column(name = "result", length = 32)
-    private String result;
+    @Column(name = "compile_success", length = 32)
+    private Boolean compileSuccess;
 
     @Column(name = "verified")
     private Boolean verified;
