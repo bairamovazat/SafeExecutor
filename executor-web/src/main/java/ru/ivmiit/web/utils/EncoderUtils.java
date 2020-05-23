@@ -20,7 +20,11 @@ public class EncoderUtils {
     }
 
 
-    public static String getBase64(String data) {
+    public static String encodeBase64(String data) {
         return Base64.getEncoder().encodeToString(data.getBytes());
+    }
+
+    public static String decodeBase64(String data) {
+        return new String(Base64.getDecoder().decode(data.getBytes()));
     }
 }

@@ -42,7 +42,7 @@ public class AuthController {
 
     @GetMapping("/")
     public String root(Authentication authentication) {
-        return "redirect:/tasks/all";
+        return "redirect:/problems/all";
     }
 
 
