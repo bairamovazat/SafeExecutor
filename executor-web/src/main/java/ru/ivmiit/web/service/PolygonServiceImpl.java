@@ -1,5 +1,6 @@
 package ru.ivmiit.web.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class PolygonServiceImpl implements PolygonService {
 
@@ -35,9 +37,8 @@ public class PolygonServiceImpl implements PolygonService {
     public PolygonServiceImpl(@Value("${unzip.dir}") String unzipPolygonDir) {
         File unzipDir = new File(unzipPolygonDir);
         if (!unzipDir.exists()) {
-            throw new IllegalArgumentException("Unzip Polygon dir not exist(" + unzipDir + ")!");
+            log.error("Unzip Polygon dir not exist(" + unzipDir + ")!");
         }
-//        Arrays.asList(Objects.requireNonNull(unzipDir.listFiles())).forEach(File::delete);
     }
 
     @Transactional

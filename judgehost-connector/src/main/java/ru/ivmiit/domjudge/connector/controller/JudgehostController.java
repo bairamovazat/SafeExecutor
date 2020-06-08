@@ -39,32 +39,6 @@ public class JudgehostController {
         return judgehostService.registerJudgehosts();
     }
 
-
-    /**
-     * GET http://localhost/domjudge/api/config?name=diskspace_error
-     * response: {"diskspace_error":1048576}
-     * <p>
-     * GET http://localhost/domjudge/api/config?name=script_timelimit
-     * response: {"script_timelimit":30}
-     * <p>
-     * GET http://localhost/domjudge/api/config?name=script_memory_limit
-     * response: {"script_memory_limit":2097152}
-     * <p>
-     * GET http://localhost/domjudge/api/config?name=script_filesize_limit
-     * response: {"script_filesize_limit":540672}
-     * <p>
-     * GET http://localhost/domjudge/api/config?name=process_limit
-     * response: {"process_limit":64}
-     * <p>
-     * GET http://localhost/domjudge/api/config?name=output_storage_limit
-     * response: {"output_storage_limit":50000}
-     * <p>
-     * GET http://localhost/domjudge/api/config?name=timelimit_overshoot
-     * response: {"timelimit_overshoot":"1s|10%"}
-     * <p>
-     * GET http://localhost/domjudge/api/config?name=update_judging_seconds
-     * response: {"update_judging_seconds":5}
-     **/
     @GetMapping("/config")
     public Object config(@RequestParam("name") String name) {
         return judgehostService.getConfig(name);
