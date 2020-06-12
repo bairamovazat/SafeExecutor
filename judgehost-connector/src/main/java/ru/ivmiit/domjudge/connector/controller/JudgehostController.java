@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/judgehost/api")
+@RequestMapping("/judgehost/api/v4")
 @Slf4j
 public class JudgehostController {
 
