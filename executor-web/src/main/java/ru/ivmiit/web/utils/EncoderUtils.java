@@ -19,6 +19,17 @@ public class EncoderUtils {
         return DatatypeConverter.printHexBinary(digest).toLowerCase();
     }
 
+    public static String getMd5LowerCase(byte[] data) {
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalArgumentException("MD5 instance not found", e);
+        }
+        md.update(data);
+        byte[] digest = md.digest();
+        return DatatypeConverter.printHexBinary(digest).toLowerCase();
+    }
 
     public static String encodeBase64(String data) {
         return Base64.getEncoder().encodeToString(data.getBytes());
