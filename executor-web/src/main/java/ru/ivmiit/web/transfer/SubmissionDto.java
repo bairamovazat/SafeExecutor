@@ -19,6 +19,8 @@ public class SubmissionDto {
 
     private Long problemId;
 
+    private String fileName;
+
     private String source;
 
     private SubmissionStatus status;

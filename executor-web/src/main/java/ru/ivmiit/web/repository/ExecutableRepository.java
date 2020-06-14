@@ -6,7 +6,10 @@ import ru.ivmiit.web.model.ExecutableType;
 import ru.ivmiit.web.model.Language;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ExecutableRepository extends JpaRepository<Executable, Long> {
     List<Executable> findAllByType(ExecutableType type);
+
+    Optional<Executable> findFirstByName(String name);
 }

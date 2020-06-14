@@ -1,5 +1,5 @@
 package ru.ivmiit.web.security.details;
 
 public enum Role {
-    ADMIN, CREATOR, USER;
+    ROLE_ADMIN, ROLE_CREATOR, ROLE_USER;
 }

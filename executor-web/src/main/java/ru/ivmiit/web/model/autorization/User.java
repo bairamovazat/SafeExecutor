@@ -45,7 +45,7 @@ public class User {
     private String email;
 
     public boolean hasRole(String role){
-        return roles.stream().anyMatch(r -> r.getRole().toString().equals(role));
+        return roles.stream().anyMatch(r -> r.getRole().toString().equals(role) || r.getRole().toString().equals("ROLE_" + role));
     }
 
     public boolean hasRole(ru.ivmiit.web.security.details.Role role){

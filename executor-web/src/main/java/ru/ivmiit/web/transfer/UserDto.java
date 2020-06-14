@@ -36,15 +36,6 @@ public class UserDto {
     }
 
     public boolean hasRole(String role){
-        return roles.stream().anyMatch(r -> r.toString().equals(role));
-    }
-
-    public static void main(String[] args) {
-        UserDto userDto = UserDto.builder()
-                .roles(Collections.singletonList(Role.CREATOR))
-                .build();
-
-        System.out.println(userDto.hasRole("CREATOR"));
-
+        return roles.stream().anyMatch(r -> r.toString().equals("ROLE_" + role));
     }
 }

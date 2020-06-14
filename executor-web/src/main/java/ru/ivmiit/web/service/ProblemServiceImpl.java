@@ -1,12 +1,13 @@
 package ru.ivmiit.web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.ivmiit.web.model.*;
+import ru.ivmiit.web.model.Problem;
+import ru.ivmiit.web.model.Submission;
+import ru.ivmiit.web.model.SubmissionStatus;
+import ru.ivmiit.web.model.TestCase;
 import ru.ivmiit.web.model.autorization.User;
 import ru.ivmiit.web.repository.*;
 import ru.ivmiit.web.transfer.ProblemDto;
@@ -16,14 +17,13 @@ import ru.ivmiit.web.utils.TaskUtils;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.Future;
 
 
 @Service
 public class ProblemServiceImpl implements ProblemService {
 
-    private static int pagesCount = 5;
-    private static int defaultPageElementCount = 10;
+    private static final int pagesCount = 5;
+    private static final int defaultPageElementCount = 10;
 
     @Autowired
     private ProblemRepository taskRepository;
@@ -35,12 +35,6 @@ public class ProblemServiceImpl implements ProblemService {
     private ProblemRepository problemRepository;
     @Autowired
     private ExecutableRepository executableRepository;
-    @Autowired
-    private JudgingRepository judgingRepository;
-
-    public ProblemServiceImpl() {
-
-    }
 
     @Override
     @Transactional
@@ -70,8 +64,8 @@ public class ProblemServiceImpl implements ProblemService {
         if (problemDto.getSpecialCompare() != null) {
             problem.setSpecialCompare(executableRepository.findById(problemDto.getSpecialCompare())
                     .orElseThrow(
-                            () -> new IllegalArgumentException("Executable not found, id: "
-                                    + problemDto.getSpecialCompare())
+                            () -> new IllegalArgumentException("Executable not found, id: " +
+                                    problemDto.getSpecialCompare())
                     )
             );
         } else {
@@ -110,7 +104,6 @@ public class ProblemServiceImpl implements ProblemService {
         return ProblemDto.from(getProblem(id));
     }
 
-
     @Override
     @Transactional
     public Problem getProblem(Long id) {
@@ -133,9 +126,7 @@ public class ProblemServiceImpl implements ProblemService {
         if (problem.getTestCases().size() == 0) {
             submission.setStatus(SubmissionStatus.EMPTY_TEST);
         }
-
     }
-
 
     @Override
     @Transactional
@@ -156,20 +147,17 @@ public class ProblemServiceImpl implements ProblemService {
         }
 
         testCase.setProblem(problem);
-        testCase.setRank(testCaseDto.getRank());
         testCase.setInputData(testCaseDto.getInputData());
         testCase.setOutputData(testCaseDto.getOutputData());
 
         testCaseRepository.save(testCase);
     }
 
-
     @Override
     public TestCase getProblemTestCase(Long testCaseId) {
         return testCaseRepository.findById(testCaseId)
                 .orElseThrow(() -> new IllegalArgumentException("Test not found"));
     }
-
 
     @Override
     public TestCaseDto getProblemTestCaseDto(Long testCaseId) {
@@ -180,6 +168,12 @@ public class ProblemServiceImpl implements ProblemService {
     @Transactional
     public void deleteTestCase(Long testCaseId) {
         testCaseRepository.deleteById(testCaseId);
+    }
+
+    @Transactional
+    @Override
+    public void deleteProblem(Long problemId) {
+        problemRepository.deleteById(problemId);
     }
 
 }

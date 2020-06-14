@@ -10,26 +10,35 @@
 
         </div>
         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xs-6">
+            <div style="text-align: center">
+                <h3>
+                    Список выполняемых файлов <a href="create"><button class="btn btn-primary">Добавить</button></a>
+                </h3>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Название</th>
-                        <th scope="col">Категория</th>
-                        <th scope="col">Сложность</th>
-                        <th scope="col">Статус</th>
+                        <th scope="col">Тип</th>
+                        <th scope="col">Хеш</th>
+                        <th scope="col">Описание</th>
+                        <th scope="col">Название файла</th>
+                        <th scope="col">Тип файла</th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    <#list model.solutions as submission>
+                    <#list model.executables as executable>
                         <tr>
-                            <th scope="row"><a href="${submission.id}">${submission.id!}</a></th>
-                            <td>${submission.problem.name!}</td>
-                            <td>${submission.problem.category!}</td>
-                            <td>${submission.problem.complexity!}</td>
-                            <td>${submission.status!}</td>
+                            <td><a href="create?executableId=${executable.id}">${executable.id!}</a></td>
+                            <td>${executable.name!}</td>
+                            <td>${executable.type!}</td>
+                            <td>${executable.md5sum!}</td>
+                            <td>${executable.description!}</td>
+                            <td>${executable.fileName!}</td>
+                            <td>${executable.fileType!}</td>
                         </tr>
                     </#list>
                     </tbody>

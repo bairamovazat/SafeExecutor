@@ -1,5 +1,6 @@
 package ru.ivmiit.web.controller;
 
+import org.springframework.transaction.annotation.Transactional;
 import ru.ivmiit.web.service.ExecutableService;
 import ru.ivmiit.web.transfer.ProblemDto;
 import ru.ivmiit.web.transfer.SubmissionDto;
@@ -19,6 +20,7 @@ import ru.ivmiit.web.service.AuthenticationService;
 import ru.ivmiit.web.service.ProblemService;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -54,8 +56,12 @@ public class ProblemController {
 
 
     @GetMapping("create")
-    public String getTaskPage(@ModelAttribute("model") ModelMap model, Authentication authentication) {
+    public String getTaskPage(@ModelAttribute("model") ModelMap model,
+                              @RequestParam("problemId") Optional<Long> problemId,
+                              Authentication authentication) {
         authenticationService.putUserToModelIfExists(authentication, model);
+        problemId.ifPresent((id) -> model.addAttribute("problem", problemService.getProblemDto(id)));
+
         model.addAttribute("specialCompare", executableService.getSpecialCompare());
         model.addAttribute("specialRun", executableService.getSpecialRun());
         return "problem/create_problem";
@@ -70,12 +76,25 @@ public class ProblemController {
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
                     .collect(Collectors.toList());
             attributes.addFlashAttribute("errors", errorList);
-            return "redirect:create";
+            return "redirect:all";
         }
         problemService.save(problemDto);
 
         attributes.addFlashAttribute("info", "Успешно!");
-        return "redirect:create";
+        return "redirect:all";
+    }
+
+    @GetMapping("delete")
+    public String deleteTest(@ModelAttribute("model") ModelMap model,
+                             @RequestParam("problemId") Optional<Long> problemId, RedirectAttributes attributes) {
+        try {
+            problemService.deleteProblem(problemId.orElseThrow(() -> new IllegalArgumentException("Id not found")));
+        } catch (IllegalArgumentException e) {
+            attributes.addFlashAttribute("errors", Collections.singleton(e.getMessage()));
+            return "redirect:all";
+        }
+        attributes.addFlashAttribute("success", "Успешно!");
+        return "redirect:all";
     }
 
     @GetMapping("all")

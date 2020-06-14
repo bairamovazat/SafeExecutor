@@ -55,6 +55,4 @@ public class Problem {
     @Column(name = "problemtext_type")
     private String problemTextType;
 
-
-
 }

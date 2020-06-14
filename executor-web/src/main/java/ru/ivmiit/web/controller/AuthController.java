@@ -1,6 +1,7 @@
 package ru.ivmiit.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,6 +33,7 @@ public class AuthController {
         return "login";
     }
 
+    @PreAuthorize("hasRole('XYZ')")
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, Authentication authentication) {
         if (authentication != null) {

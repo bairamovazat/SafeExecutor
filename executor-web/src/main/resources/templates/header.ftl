@@ -19,6 +19,12 @@
                     <a class="nav-link" href="<@spring.url "/"/>profile">Личный кабинет</a>
                 </li>
 
+                <#if model.user.get().hasRole("CREATOR")>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<@spring.url "/"/>executable/all">Executable</a>
+                    </li>
+                </#if>
+
                 <li class="nav-item">
                     <a class="nav-link" href="<@spring.url "/"/>logout">Выход</a>
                 </li>
