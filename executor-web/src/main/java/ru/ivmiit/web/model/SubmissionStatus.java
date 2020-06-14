@@ -4,7 +4,8 @@ public enum SubmissionStatus {
     CREATED, PROCESSED, CORRECT,
     WRONG_ANSWER, EMPTY_TEST, NO_OUTPUT,
     TIME_LIMIT, MEMORY_LIMIT, OUTPUT_LIMIT,
-    COMPILER_ERROR, RUN_ERROR, COMPARE_ERROR;
+    COMPILER_ERROR, RUN_ERROR, COMPARE_ERROR,
+    INTERNAL_ERROR;
 
     public static SubmissionStatus getStatusFromDomjudgeStatus(String status) {
         switch (status) {
@@ -26,6 +27,8 @@ public enum SubmissionStatus {
                 return OUTPUT_LIMIT;
             case "compare-error":
                 return COMPARE_ERROR;
+            case "internal-error":
+                return INTERNAL_ERROR;
             default:
                 return null;
         }

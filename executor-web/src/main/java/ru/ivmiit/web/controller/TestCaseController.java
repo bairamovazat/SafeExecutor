@@ -41,7 +41,7 @@ public class TestCaseController {
         } catch (IllegalArgumentException e) {
             return "redirect:all";
         }
-        return "problem/tests_page";
+        return "problem/test/all_tests";
     }
 
     @GetMapping("{problemId}/test/create")
@@ -59,7 +59,7 @@ public class TestCaseController {
             return "redirect:all";
         }
 
-        return "problem/create_test";
+        return "problem/test/create_test";
     }
 
     @PostMapping("{problemId}/test/create")
@@ -88,11 +88,10 @@ public class TestCaseController {
     }
 
     @GetMapping("{problemId}/test/delete")
-    @Transactional
     public String deleteTest(@ModelAttribute("model") ModelMap model,
                              @PathVariable("problemId") Optional<Long> problemId,
-                             @RequestParam("testId")Optional<Long> testId,
-                             BindingResult errors, RedirectAttributes attributes) {
+                             @RequestParam("testId") Optional<Long> testId,
+                             RedirectAttributes attributes) {
         try {
             problemService.deleteTestCase(testId.orElseThrow(() -> new IllegalArgumentException("Id not found")));
         } catch (IllegalArgumentException e) {

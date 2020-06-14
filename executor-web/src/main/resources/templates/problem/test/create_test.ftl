@@ -1,9 +1,9 @@
 <#ftl encoding='UTF-8'>
 <!DOCTYPE html>
 <html>
-<#include "../head.ftl">
+<#include "../../head.ftl">
 <body>
-<#include "../header.ftl">
+<#include "../../header.ftl">
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-1 col-lg-2 col-xs-3">
@@ -32,19 +32,12 @@
                     </#if>
                 </div>
 
-                <input style="display: none;" name="id"
-                       value="${model.test???then(model.test.id, "")}">
+                <input style="display: none;" name="id" value="${model.test???then(model.test.id, "")}">
 
                 <div class="form-group">
                     <h4>
                         ${model.test???then("Изменение теста " + model.test.id, "Создание нового теста")}
                     </h4>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputRank">Rank</label>
-                    <input id="inputRank" name="rank" class="form-control" type="number"
-                           value="${model.test???then(model.test.rank, "")}">
                 </div>
 
                 <div class="form-group">
@@ -70,6 +63,6 @@
     </div>
 </div>
 
-<#include "../footer.ftl">
+<#include "../../footer.ftl">
 </body>
 </html>

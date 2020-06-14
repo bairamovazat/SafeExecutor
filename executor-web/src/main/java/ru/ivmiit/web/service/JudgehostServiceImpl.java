@@ -8,14 +8,17 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 import ru.ivmiit.domjudge.connector.service.JudgehostService;
 import ru.ivmiit.domjudge.connector.transfer.*;
+import ru.ivmiit.domjudge.connector.utils.Base64Utils;
 import ru.ivmiit.domjudge.connector.utils.ConfigInMemoryUtils;
 import ru.ivmiit.domjudge.connector.utils.ExecutablesInMemoryUtils;
 import ru.ivmiit.web.model.*;
+import ru.ivmiit.web.model.InternalError;
+import ru.ivmiit.web.repository.CompletedTestCaseRepository;
 import ru.ivmiit.web.repository.JudgingRepository;
-import ru.ivmiit.web.repository.ProblemRepository;
 import ru.ivmiit.web.repository.SubmissionRepository;
 import ru.ivmiit.web.repository.TestCaseRepository;
 import ru.ivmiit.web.utils.EncoderUtils;
+import ru.ivmiit.web.utils.JudgingRunDtoUtils;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -44,7 +47,7 @@ public class JudgehostServiceImpl implements JudgehostService {
     private TaskExecutor taskExecutor;
 
     @Autowired
-    private ProblemRepository problemRepository;
+    private CompletedTestCaseRepository completedTestCaseRepository;
 
     @Override
     public Object getConfig(String name) {
@@ -98,14 +101,14 @@ public class JudgehostServiceImpl implements JudgehostService {
         NextJudginDto nextJudginDto = null;
         Map<String, TestCaseDto> testCaseDtoMap = new HashMap<>();
 
-        AtomicInteger testCaseNumber = new AtomicInteger(1);
+        AtomicInteger testCaseNumber = new AtomicInteger(0);
         submission.getProblem().getTestCases()
                 .forEach(testCase -> {
-                    testCaseDtoMap.put(Integer.toString(testCaseNumber.getAndIncrement()), TestCaseDto.builder()
+                    testCaseDtoMap.put(Integer.toString(testCaseNumber.incrementAndGet()), TestCaseDto.builder()
                             .md5sum_input(EncoderUtils.getMd5LowerCase(testCase.getInputData()))
                             .md5sum_output(EncoderUtils.getMd5LowerCase(testCase.getOutputData()))
                             .testcaseId(testCase.getId())
-                            .rank(Long.valueOf(testCase.getRank()))
+                            .rank((long) testCaseNumber.get())
                             .build());
                 });
 
@@ -172,17 +175,23 @@ public class JudgehostServiceImpl implements JudgehostService {
     }
 
     @Override
+    @Transactional
     public Integer internalError(InternalErrorDto internalErrorDto) {
-        log.info(internalErrorDto.toString());
+        Judging judging = judgingRepository.getOne(internalErrorDto.getJudgingid());
+        Submission submission = submissionRepository.findFirstByIdAndLock(judging.getSubmission().getId());
+        submission.setStatus(SubmissionStatus.INTERNAL_ERROR);
+        InternalError internalError = InternalError.builder()
+                .description(internalErrorDto.getDescription())
+                .judgehostLog(Base64Utils.decodeFromUrl(internalErrorDto.getJudgehostlog()))
+                .disabled(internalErrorDto.getDisabled())
+                .build();
+        submission.setInternalError(internalError);
         return Math.toIntExact(System.currentTimeMillis() % 1000);
     }
 
     @Override
     public Integer addJudgingRun(String hostName, Long judgingId, List<AddJudgingRunDto> addJudgingRunDtoList) {
         addJudgingRunDtoList.forEach(addJudgingRunDto -> taskExecutor.execute(createAddJudgingRunRunnable(judgingId, addJudgingRunDto)));
-        log.info(addJudgingRunDtoList.stream()
-                .map(judgingRun -> judgingRun.getDecoded().toString())
-                .collect(Collectors.joining(", ")));
         return Math.toIntExact(System.currentTimeMillis() % 1000);
     }
 
@@ -204,24 +213,32 @@ public class JudgehostServiceImpl implements JudgehostService {
                             " not equals to testcaseId(" + problem.getId() + ")");
                 }
 
-                List<TestCase> testCases = problem.getTestCases();
+                CompletedTestCase completedTestCase = completedTestCaseRepository.findFirstByTestCaseAndSubmission(testCase, submission)
+                        .orElse(new CompletedTestCase());
+                completedTestCase.setTestCase(testCase);
+                completedTestCase.setSubmission(submission);
+                completedTestCase.setSuccess(submissionStatus == SubmissionStatus.CORRECT);
+                submission.getCompletedTestCases().add(completedTestCase);
 
                 if (submissionStatus != SubmissionStatus.CORRECT) {
+                    JudgingRunDtoUtils.fillFillDataFrom(addJudgingRunDto, completedTestCase);
                     submission.setStatus(submissionStatus);
                     return submission;
                 }
-                submission.getPassedTestCases().add(testCase);
 
-                if (testCases.size() == submission.getPassedTestCases().size()) {
+                List<TestCase> testCases = problem.getTestCases();
+
+                Set<Long> passedTestIdList = submission.getCompletedTestCases()
+                        .stream()
+                        .map(e -> e.getTestCase().getId())
+                        .collect(Collectors.toSet());
+
+                if (testCases.size() == passedTestIdList.size()) {
                     List<Long> testCasesIdList = problem.getTestCases()
                             .stream()
                             .map(TestCase::getId)
                             .collect(Collectors.toList());
-
-                    List<Long> passedTestIdList = submission.getPassedTestCases()
-                            .stream()
-                            .map(TestCase::getId)
-                            .collect(Collectors.toList());
+                    ;
                     if (passedTestIdList.containsAll(testCasesIdList)) {
                         submission.setStatus(SubmissionStatus.CORRECT);
                     } else {

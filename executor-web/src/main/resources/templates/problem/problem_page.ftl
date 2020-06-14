@@ -1,7 +1,7 @@
 <#ftl encoding='UTF-8'>
 <!DOCTYPE html>
 <html>
-     <#include "../head.ftl">
+<#include "../head.ftl">
 <body>
 <#include "../header.ftl">
 <div class="container-fluid">
@@ -19,46 +19,46 @@
                         <li class="list-group-item text-center">
                             Время: ${model.problem.timeLimit???then(model.problem.timeLimit, 0) } сек.
                             Память ${model.problem.memLimit!} МБ.
-<#--                            Сложность ${model.problem.complexity!}-->
+                            <#--                            Сложность ${model.problem.complexity!}-->
                         </li>
                         <#if model.user.isPresent() && model.user.get().hasRole("CREATOR")>
-                           <li class="list-group-item">
-                               <a href="create?taskId=${model.problem.id}">Изменить</a>
-                           </li>
-                           <li class="list-group-item">
-                               <a href="${model.problem.id}/test/all">Тесты</a>
-                           </li>
+                            <li class="list-group-item">
+                                <a href="create??problemId=${model.problem.id}">Изменить</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="${model.problem.id}/test/all">Тесты</a>
+                            </li>
                         </#if>
 
                         <li class="list-group-item">
                             <h6 class="card-subtitle mb-2">Описание</h6>
-                        ${model.problem.description!}
+                            ${model.problem.description!}
                         </li>
                         <li class="list-group-item">
                             <h6 class="card-subtitle mb-2">Входные данные</h6>
-                        ${model.problem.inputDescription!}
+                            ${model.problem.inputDescription!}
                         </li>
 
                         <li class="list-group-item">
                             <h6 class="card-subtitle mb-2">Выходные данные</h6>
-                        ${model.problem.outputDescription!}
+                            ${model.problem.outputDescription!}
                         </li>
-<#--                        <#if model.problem.samples??>-->
-<#--                            <#list model.problem.samples as sample>-->
-<#--                                <li class="list-group-item">-->
-<#--                                    <h6 class="card-subtitle mb-2">Пример входных данных: </h6>-->
-<#--                                    <div>-->
-<#--                                        ${sample.inputData!}-->
-<#--                                    </div>-->
-<#--                                </li>-->
-<#--                                <li class="list-group-item">-->
-<#--                                    <h6 class="card-subtitle mb-2">Пример выходных данных: </h6>-->
-<#--                                    <div>-->
-<#--                                        ${sample.outputData!}-->
-<#--                                    </div>-->
-<#--                                </li>-->
-<#--                            </#list>-->
-<#--                        </#if>-->
+                        <#--                        <#if model.problem.samples??>-->
+                        <#--                            <#list model.problem.samples as sample>-->
+                        <#--                                <li class="list-group-item">-->
+                        <#--                                    <h6 class="card-subtitle mb-2">Пример входных данных: </h6>-->
+                        <#--                                    <div>-->
+                        <#--                                        ${sample.inputData!}-->
+                        <#--                                    </div>-->
+                        <#--                                </li>-->
+                        <#--                                <li class="list-group-item">-->
+                        <#--                                    <h6 class="card-subtitle mb-2">Пример выходных данных: </h6>-->
+                        <#--                                    <div>-->
+                        <#--                                        ${sample.outputData!}-->
+                        <#--                                    </div>-->
+                        <#--                                </li>-->
+                        <#--                            </#list>-->
+                        <#--                        </#if>-->
                         <#if model.user??>
                             <li class="list-group-item">
                                 <form action="" method='POST' onsubmit="updateSource()">
@@ -74,13 +74,18 @@
                                         <label for="inputText">Код</label>
                                         <textarea id="codeImport" name="codeImport" rows="1" class="form-control"
                                                   maxlength="2048">${"import java.util.ArrayList;"}</textarea>
-                                        <textarea id="programHeader" class="code_not_resize form-control" content="" rows="1"
+                                        <textarea id="programHeader" class="code_not_resize form-control" content=""
+                                                  rows="1"
                                                   disabled>${"public class Program {"}</textarea>
-                                        <textarea id="code" style="overflow:hidden" name="code" rows="3" class="form-control"
+                                        <textarea id="code" style="overflow:hidden" name="code" rows="3"
+                                                  class="form-control"
                                                   maxlength="2048"
                                                   content="">${"    public static void main(String[] args){\n\n    }"}</textarea>
-                                        <textarea id="programFooter" class="code_not_resize form-control" content="" rows="1"
+                                        <textarea id="programFooter" class="code_not_resize form-control" content=""
+                                                  rows="1"
                                                   disabled>${"}"}</textarea>
+                                        <input style="display: none;" name="fileName"
+                                               value="${model.problem???then(model.problem.fileName???then(model.problem.fileName, "Program.java"), "Program.java")}">
                                         <input id="source" style="display: none" name="source">
                                     </div>
                                     <div class="form-group">
@@ -100,6 +105,7 @@
 </div>
 <script>
     $('textarea').autoResize();
+
     function updateSource() {
         let codeImport = document.getElementById("codeImport");
         let programHeader = document.getElementById("programHeader");

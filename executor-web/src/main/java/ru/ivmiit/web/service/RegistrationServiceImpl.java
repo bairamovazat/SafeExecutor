@@ -41,7 +41,7 @@ public class RegistrationServiceImpl implements RegistrationService {
                 .roles(new ArrayList<>())
                 .uuid(uuid)
                 .build();
-        ru.ivmiit.web.model.autorization.Role role = roleRepository.findFirstByRole(Role.USER);
+        ru.ivmiit.web.model.autorization.Role role = roleRepository.findFirstByRole(Role.ROLE_USER);
         role.getUsers().add(newUser);
         newUser.getRoles().add(role);
         emailService.sendMail("Здравствуйте, чтобы продтвердить аккаунт перейдите по: http://localhost:8080/confirm/" + uuid,"Подтверждение аккаунта",userForm.getEmail());

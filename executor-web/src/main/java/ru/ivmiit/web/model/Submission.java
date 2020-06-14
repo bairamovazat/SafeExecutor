@@ -1,6 +1,7 @@
 package ru.ivmiit.web.model;
 
 import lombok.*;
+import org.hibernate.annotations.Type;
 import ru.ivmiit.web.model.autorization.Role;
 import ru.ivmiit.web.model.autorization.User;
 
@@ -23,7 +24,11 @@ public class Submission {
     @JoinColumn(name="task_id")
     private Problem problem;
 
+    @Column(name = "file_name")
+    private String fileName;
+
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column
     private String source;
 
@@ -38,17 +43,11 @@ public class Submission {
     @JoinColumn(name="user_id")
     private User author;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "submission_test_case",
-            joinColumns = @JoinColumn(
-                    name = "submission_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "test_case_id", referencedColumnName = "id"))
-    private List<TestCase> passedTestCases;
+    @OneToMany(mappedBy="submission", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CompletedTestCase> completedTestCases;
 
-    //-1 - все
-    //0 - ещё не проверялось или ни один тест не сдан
-    private Integer passedTestCount = 0;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="internal_error_id")
+    private InternalError internalError;
 
 }

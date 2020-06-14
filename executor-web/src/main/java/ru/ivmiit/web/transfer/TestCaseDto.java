@@ -19,8 +19,6 @@ public class TestCaseDto {
 
     private Long problemId;
 
-    private Integer rank;
-
     public String inputData;
 
     public String outputData;
@@ -29,7 +27,6 @@ public class TestCaseDto {
         return TestCaseDto.builder()
                 .id(testCase.getId())
                 .problemId(testCase.getProblem().getId())
-                .rank(testCase.getRank())
                 .inputData(testCase.getInputData())
                 .outputData(testCase.getOutputData())
                 .build();

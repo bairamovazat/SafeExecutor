@@ -35,6 +35,10 @@ public class EncoderUtils {
         return Base64.getEncoder().encodeToString(data.getBytes());
     }
 
+    public static byte[] encodeBase64(byte[] data) {
+        return Base64.getEncoder().encode(data);
+    }
+
     public static String decodeBase64(String data) {
         return new String(Base64.getDecoder().decode(data.getBytes()));
     }

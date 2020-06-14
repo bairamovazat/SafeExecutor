@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
+import org.springframework.web.multipart.MultipartFile;
+import ru.ivmiit.web.utils.EncoderUtils;
 
 import javax.persistence.*;
+import java.io.IOException;
 
 @Data
 @NoArgsConstructor
@@ -20,19 +24,27 @@ public class Executable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", length = 32)
+    @Column(name = "name", unique = true, length = 32)
     private String name;
 
-    @Column(name = "md5sum", length = 32)
+    @Column(name = "file_name")
+    private String fileName;
+
+    @Column(name = "file_type")
+    private String fileType;
+
+    @Column(name = "md5_sum", length = 32)
     private String md5sum;
 
     @Lob
-    @Column(name = "zipfile")
-    private String zipFile;
+    @Type(type = "org.hibernate.type.TextType")
+    @Column(name = "file_data")
+    private String fileData;
 
-    //TODO Only for test
-    @Column(name = "data")
-    private byte[] data;
+    @Lob
+    @Type(type = "org.hibernate.type.TextType")
+    @Column(name = "base64_file_data")
+    private String base64FileData;
 
     @Column(name = "description")
     private String description;
@@ -40,4 +52,16 @@ public class Executable {
     @Column(name = "type", length = 32)
     @Enumerated(EnumType.STRING)
     private ExecutableType type;
+
+    public void setMultipartFile(MultipartFile file) {
+        this.setFileName(file.getOriginalFilename());
+        this.setFileType(file.getContentType());
+        try {
+            this.setFileData(new String(file.getBytes()));
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Ошибка получения данных файла формы");
+        }
+        this.setBase64FileData(EncoderUtils.encodeBase64(this.getFileData()));
+        this.setMd5sum(EncoderUtils.getMd5LowerCase(this.getFileData()));
+    }
 }

@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        CharacterEncodingFilter  filter = new CharacterEncodingFilter();
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);
         http.addFilterBefore(filter, CsrfFilter.class);
@@ -36,11 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/profile/**").hasAuthority("USER")
-                .antMatchers("/tasks/create").hasAuthority("CREATOR")
-                .antMatchers("/polygon/import").hasAuthority("CREATOR")
+                .antMatchers("/profile/**").hasRole("USER")
+                .antMatchers("/tasks/create").hasRole("CREATOR")
+                .antMatchers("/polygon/import").hasRole("CREATOR")
                 .antMatchers("/tasks/*").permitAll()
-                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/sign-up").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/css/**").permitAll()

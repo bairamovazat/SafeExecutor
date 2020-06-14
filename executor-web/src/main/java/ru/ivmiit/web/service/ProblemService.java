@@ -37,4 +37,5 @@ public interface ProblemService {
 
     void deleteTestCase(Long testCaseId);
 
+    void deleteProblem(Long problemId);
 }

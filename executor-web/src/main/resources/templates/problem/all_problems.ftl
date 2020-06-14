@@ -1,36 +1,86 @@
 <#ftl encoding='UTF-8'>
 <!DOCTYPE html>
 <html>
-     <#include "../head.ftl">
+<#include "../head.ftl">
 <body>
 <#include "../header.ftl">
 <div class="container-fluid">
     <div class="row">
+        <div class="col-12">
+            <#if errors??>
+                <#list errors as e>
+                    <div class="alert alert-danger" role="alert">${e}</div>
+                </#list>
+            </#if>
+        </div>
+        <div class="col-12">
+            <#if info??>
+                <div class="alert alert-success" role="alert">${info}</div>
+            </#if>
+        </div>
         <div class="col-md-1 col-lg-2 col-xs-3">
 
         </div>
         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xs-6">
-            <div style="text-align: center"><h3><a href="create">Создать задачу</a></h3></div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Название</th>
-<#--                    <th scope="col">Категория</th>-->
-<#--                    <th scope="col">Сложность</th>-->
-                </tr>
-                </thead>
-                <tbody>
-                <#list model.problems as problem>
-                <tr>
-                    <th scope="row"><a href="${problem.id}">${problem.id!}</a></th>
-                    <td>${problem.name!}</td>
-<#--                    <td>${problem.category!}</td>-->
-<#--                    <td>${problem.complexity!}</td>-->
-                </tr>
-                </#list>
-                </tbody>
-            </table>
+            <div style="text-align: center">
+                <h3> Список задач
+                    <#if model.user.isPresent() && model.user.get().hasRole("CREATOR")>
+                        <a href="create">
+                            <button class="btn btn-primary">
+                                Добавить
+                            </button>
+                        </a>
+                    </#if>
+                </h3>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Название</th>
+                        <#if model.user.isPresent() && model.user.get().hasRole("CREATOR")>
+                            <th scope="col">Изменить</th>
+                            <th scope="col">Тесты</th>
+                            <th scope="col">Удалить</th>
+                        </#if>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <#list model.problems as problem>
+                        <tr>
+                            <th scope="row"><a href="${problem.id}">${problem.id!}</a></th>
+                            <td>${problem.name!}</td>
+                            <#if model.user.isPresent() && model.user.get().hasRole("CREATOR")>
+                                <td>
+                                    <a href="create?problemId=${problem.id}">
+                                        <button class="btn btn-primary">
+                                            Изменить
+                                        </button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="${problem.id}/test/all">
+                                        <button class="btn btn-primary">
+                                            Тесты
+                                        </button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="delete?problemId=${problem.id}">
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#exampleModal">
+                                            Удалить
+                                        </button>
+                                    </a>
+                                </td>
+                            </#if>
+                        </tr>
+                    </#list>
+                    </tbody>
+                </table>
+            </div>
             <nav aria-label="navigation">
                 <ul class="pagination justify-content-center">
                     <li class="page-item ${((model.currentPage == 0)?string("disabled",""))}">
@@ -58,7 +108,6 @@
         </div>
     </div>
 </div>
-
 <#include "../footer.ftl">
 </body>
 </html>

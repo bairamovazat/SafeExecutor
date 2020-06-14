@@ -14,19 +14,19 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class InternalErrorDto {
 
+    @JsonProperty(value ="judgingid")
+    private Long judgingid;
+
     @JsonProperty(value ="description")
     private String description;
 
     @JsonProperty(value ="judgehostlog")
-    private String judgehostLog;
+    private String judgehostlog;
 
     @JsonProperty(value ="disabled")
     private String disabled;
 
     @JsonProperty(value ="cid")
     private Integer cid;
-
-    @JsonProperty(value ="judgingid")
-    private Integer judgingId;
 
 }
