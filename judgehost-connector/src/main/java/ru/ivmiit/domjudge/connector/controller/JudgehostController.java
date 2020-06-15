@@ -40,7 +40,7 @@ public class JudgehostController {
     }
 
     @GetMapping("/config")
-    public Object config(@RequestParam("name") String name) {
+    public Map<String, Object> config(@RequestParam("name") String name) {
         return judgehostService.getConfig(name);
     }
 
@@ -74,7 +74,6 @@ public class JudgehostController {
         }
         Map<String, String> keyValues = UrlUtils.splitQueryParameter(body);
 
-        String outputCompile = keyValues.get("output_compile");
         UpdateJudgingDto updateJudgingDto = UpdateJudgingDto.builder()
                 .compileSuccess(keyValues.get("compile_success"))
                 .outputCompile(keyValues.get("output_compile"))
@@ -102,7 +101,6 @@ public class JudgehostController {
     public Integer internalError(InternalErrorDto internalErrorDto) {
         return judgehostService.internalError(internalErrorDto);
     }
-
 
     @PostMapping(value = "/judgehosts/add-judging-run/{hostname}/{judgingId}",
             consumes = "application/x-www-form-urlencoded;charset=UTF-8")

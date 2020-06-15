@@ -50,7 +50,7 @@ public class JudgehostServiceImpl implements JudgehostService {
     private CompletedTestCaseRepository completedTestCaseRepository;
 
     @Override
-    public Object getConfig(String name) {
+    public Map<String, Object> getConfig(String name) {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put(name, configMap.get(name));
         return hashMap;

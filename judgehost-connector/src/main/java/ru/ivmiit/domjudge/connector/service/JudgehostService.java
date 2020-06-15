@@ -3,9 +3,10 @@ package ru.ivmiit.domjudge.connector.service;
 import ru.ivmiit.domjudge.connector.transfer.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface JudgehostService {
-    Object getConfig(String name);
+    Map<String, Object> getConfig(String name);
 
     List<CodeSourceDto> getSubmissionSourceCode(Long contestId, Long submissionId);
 

@@ -20,10 +20,6 @@ public class Judging {
     @Column(name = "id")
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "contest_id")
-//    private Contest contest;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "submission_id")
     private Submission submission;
