@@ -16,7 +16,7 @@ public class JudgehostServiceImplExample implements JudgehostService {
     private static Integer requestCount = -1;
 
     @Override
-    public Object getConfig(String name) {
+    public Map<String, Object> getConfig(String name) {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put(name, configMap.get(name));
         return hashMap;

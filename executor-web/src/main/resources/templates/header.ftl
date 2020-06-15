@@ -1,7 +1,7 @@
 <#import "spring.ftl" as spring />
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="<@spring.url "/"/>">Navbar</a>
+    <a class="navbar-brand" href="<@spring.url "/"/>">acm.kpfu</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbarLg">
         <span class="navbar-toggler-icon"></span>

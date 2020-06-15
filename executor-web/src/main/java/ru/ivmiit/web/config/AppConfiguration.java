@@ -24,11 +24,11 @@ public class AppConfiguration implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         registry.addResourceHandler("/js/**")
-                .addResourceLocations("/WEB-INF/classes/js/");
+                .addResourceLocations("classpath:/js/");
         registry.addResourceHandler("/css/**")
-                .addResourceLocations("/WEB-INF/classes/css/");
+                .addResourceLocations("classpath:/css/");
         registry.addResourceHandler("/resources/**")
-                .addResourceLocations("/WEB-INF/classes/resources/");
+                .addResourceLocations("classpath:/resources/");
     }
 
     @Bean("threadPoolTaskExecutor")
