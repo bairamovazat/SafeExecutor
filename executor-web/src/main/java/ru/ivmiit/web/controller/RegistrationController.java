@@ -19,13 +19,6 @@ import javax.validation.Valid;
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * 10.11.2017
- * RegistrationController
- *
- * @author Sidikov Marsel (First Software Engineering Platform)
- * @version v1.0
- */
 @Controller
 public class RegistrationController {
 

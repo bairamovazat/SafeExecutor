@@ -69,10 +69,4 @@ public class FileUtils {
         return destFile;
     }
 
-    public static void main(String[] args) throws IOException {
-        File zipFile = new File("/home/ejudge/Загрузки/example-a-plus-b-4.zip");
-        String destDir = "/home/ejudge/unzip";
-        InputStream targetStream = new FileInputStream(zipFile);
-        unzip(targetStream, destDir);
-    }
 }

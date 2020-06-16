@@ -4,13 +4,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-/**
- * 17.11.2017
- * PasswordGenerator
- *
- * @author Sidikov Marsel (First Software Engineering Platform)
- * @version v1.0
- */
 @Component
 public class PasswordGenerator {
     private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
