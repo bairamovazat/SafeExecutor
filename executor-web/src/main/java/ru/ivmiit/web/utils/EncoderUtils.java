@@ -1,6 +1,7 @@
 package ru.ivmiit.web.utils;
 
 import javax.xml.bind.DatatypeConverter;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -32,14 +33,14 @@ public class EncoderUtils {
     }
 
     public static String encodeBase64(String data) {
-        return Base64.getEncoder().encodeToString(data.getBytes());
+        return Base64.getUrlEncoder().encodeToString(data.getBytes(StandardCharsets.UTF_8));
     }
 
     public static byte[] encodeBase64(byte[] data) {
-        return Base64.getEncoder().encode(data);
+        return Base64.getUrlEncoder().encode(data);
     }
 
     public static String decodeBase64(String data) {
-        return new String(Base64.getDecoder().decode(data.getBytes()));
+        return new String(Base64.getUrlDecoder().decode(data.getBytes()));
     }
 }

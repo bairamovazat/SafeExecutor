@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,10 +25,9 @@ public class Language {
     @Column(name = "name")
     private String name;
 
-    @Lob
-    @Type(type = "org.hibernate.type.TextType")
+    @ElementCollection
     @Column(name = "extensions")
-    private String extensions;
+    private List<String> extensions;
 
     @Column(name = "require_entry_point")
     private Boolean requireEntryPoint;
@@ -44,10 +44,11 @@ public class Language {
     @Column(name = "time_factor")
     private Float timeFactor;
 
-    @Column(name = "compile_script", length = 32)
-    private String compileScript;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "compile_executable_id")
+    private Executable compileScript;
 
-    @Column(name = "filter_compiler_files", length = 32)
+    @Column(name = "filter_compiler_files")
     private Boolean filterCompilerFiles;
 
 }

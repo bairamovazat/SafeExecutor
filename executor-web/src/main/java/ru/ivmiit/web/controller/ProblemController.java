@@ -2,6 +2,7 @@ package ru.ivmiit.web.controller;
 
 import org.springframework.transaction.annotation.Transactional;
 import ru.ivmiit.web.service.ExecutableService;
+import ru.ivmiit.web.service.LanguageService;
 import ru.ivmiit.web.transfer.ProblemDto;
 import ru.ivmiit.web.transfer.SubmissionDto;
 import ru.ivmiit.web.validators.SolutionFormValidator;
@@ -43,6 +44,9 @@ public class ProblemController {
 
     @Autowired
     private ExecutableService executableService;
+
+    @Autowired
+    private LanguageService languageService;
 
     @InitBinder("taskForm")
     public void initUserFormValidator(WebDataBinder binder) {
@@ -114,6 +118,8 @@ public class ProblemController {
         try {
             ProblemDto problem = problemService.getProblemDto(problemId.orElseThrow(() -> new IllegalArgumentException("Id not found")));
             model.addAttribute("problem", problem);
+            model.addAttribute("languages", languageService.getLanguages());
+
         } catch (IllegalArgumentException e) {
             return "redirect:all";
         }

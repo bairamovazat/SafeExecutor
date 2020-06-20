@@ -10,23 +10,32 @@
 
         </div>
         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xs-6">
+            <div style="text-align: center">
+                <h3>
+                    Список языков программирования для сдачи <a href="create"><button class="btn btn-primary">Добавить</button></a>
+                </h3>
+            </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Название</th>
-                        <th scope="col">Язык</th>
-                        <th scope="col">Статус</th>
+                        <th scope="col">Расширения</th>
+                        <th scope="col">Разрешена сдача</th>
+                        <th scope="col">Разрешено тестирование</th>
+                        <th scope="col">Выполняемый файл для компиляции</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <#list model.solutions as submission>
+                    <#list model.languages as language>
                         <tr>
-                            <th scope="row"><a href="${submission.id}">${submission.id!}</a></th>
-                            <td>${submission.problemName!}</td>
-                            <td>${submission.languageName!}</td>
-                            <td>${submission.status!}</td>
+                            <td><a href="create?languageId=${language.id}">${language.id!}</a></td>
+                            <td>${language.name!}</td>
+                            <td>${language.extensions!}</td>
+                            <td>${language.allowSubmit???then("Да", "")}</td>
+                            <td>${language.allowJudge???then("Да", "")}</td>
+                            <td>${language.compileScriptName!}</td>
                         </tr>
                     </#list>
                     </tbody>

@@ -10,6 +10,9 @@ import ru.ivmiit.web.utils.EncoderUtils;
 
 import javax.persistence.*;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 @Data
 @NoArgsConstructor
@@ -37,14 +40,9 @@ public class Executable {
     private String md5sum;
 
     @Lob
-    @Type(type = "org.hibernate.type.TextType")
+    @Type(type = "org.hibernate.type.BinaryType")
     @Column(name = "file_data")
-    private String fileData;
-
-    @Lob
-    @Type(type = "org.hibernate.type.TextType")
-    @Column(name = "base64_file_data")
-    private String base64FileData;
+    private byte[] fileData;
 
     @Column(name = "description")
     private String description;
@@ -56,12 +54,16 @@ public class Executable {
     public void setMultipartFile(MultipartFile file) {
         this.setFileName(file.getOriginalFilename());
         this.setFileType(file.getContentType());
+        byte[] bytes;
         try {
-            this.setFileData(new String(file.getBytes()));
+            bytes = file.getBytes();
+            this.setFileData(bytes);
         } catch (IOException e) {
             throw new IllegalArgumentException("Ошибка получения данных файла формы");
         }
-        this.setBase64FileData(EncoderUtils.encodeBase64(this.getFileData()));
-        this.setMd5sum(EncoderUtils.getMd5LowerCase(this.getFileData()));
+
+        String base64 = new String(Base64.getUrlEncoder().encode(bytes));
+
+        this.setMd5sum(EncoderUtils.getMd5LowerCase(bytes));
     }
 }

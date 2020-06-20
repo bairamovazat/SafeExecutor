@@ -13,6 +13,9 @@ public interface ExecutableService {
 
     List<ExecutableDto> getSpecialCompare();
 
+    @Transactional
+    List<ExecutableDto> getSpecialCompile();
+
     ExecutableDto getExecutableDto(Long id);
 
     void save(ExecutableDto executableDto);
@@ -26,4 +29,7 @@ public interface ExecutableService {
     List<Integer> getPageList(int currentPage);
 
     void writeExecutableFile(Long id, HttpServletResponse response) throws IOException;
+
+    @Transactional
+    byte[] getExecutableData(Long id);
 }

@@ -25,6 +25,14 @@
                     </#if>
                 </div>
 
+                <h3>
+                <#if model.problem??>
+                    Изменение исполняемого файла "${model.executable.name}"
+                <#else>
+                    Создание нового исполняемого файла
+                </#if>
+                </h3>
+
                 <input style="display: none;" name="id"
                        value="${model.executable???then(model.executable.id, "")}">
 
@@ -65,6 +73,16 @@
                             </label>
                         </div>
                     </div>
+                <#else>
+                    <div class="form-group" style="display: none">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" id="inputUpdateFile"
+                                   name="updateFile" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="inputUpdateFile">
+                                Обновить файл ?
+                            </label>
+                        </div>
+                    </div>
                 </#if>
 
                 <div class="form-group" id="inputFileGroup">
@@ -89,10 +107,11 @@
             $("#inputFileGroup")[0].style.display = (enabled ? "block" : "none");
             $("#inputFile")[0].required = (enabled ? true : false);
 
-            if(!enabled) {
+            if (!enabled) {
                 $("#inputFile")[0].value = "";
             }
         }
+
         $(document).ready(function () {
             $("#inputUpdateFile")[0].onchange = (event) => {
                 console.log(event);

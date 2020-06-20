@@ -36,6 +36,9 @@ public class ProblemServiceImpl implements ProblemService {
     @Autowired
     private ExecutableRepository executableRepository;
 
+    @Autowired
+    private LanguageRepository languageRepository;
+
     @Override
     @Transactional
     public Problem save(ProblemDto problemDto) {
@@ -116,10 +119,10 @@ public class ProblemServiceImpl implements ProblemService {
         Problem problem = getProblem(submissionDto.getProblemId());
         Submission submission = new Submission();
         submission.setProblem(problem);
+        submission.setFileName(submissionDto.getFileName());
         submission.setSource(submissionDto.getSource());
         submission.setStatus(SubmissionStatus.CREATED);
-        //TODO поменять
-        submission.setLanguage(null);
+        submission.setLanguage(languageRepository.getOne(submissionDto.getLanguageId()));
         submission.setAuthor(user);
         submissionRepository.saveAndFlush(submission);
 
