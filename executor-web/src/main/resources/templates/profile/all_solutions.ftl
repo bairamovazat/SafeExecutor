@@ -16,19 +16,16 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Название</th>
-                        <th scope="col">Категория</th>
-                        <th scope="col">Сложность</th>
+                        <th scope="col">Язык</th>
                         <th scope="col">Статус</th>
-
                     </tr>
                     </thead>
                     <tbody>
                     <#list model.solutions as submission>
                         <tr>
                             <th scope="row"><a href="${submission.id}">${submission.id!}</a></th>
-                            <td>${submission.problem.name!}</td>
-                            <td>${submission.problem.category!}</td>
-                            <td>${submission.problem.complexity!}</td>
+                            <td>${submission.problemName!}</td>
+                            <td>${submission.languageName!}</td>
                             <td>${submission.status!}</td>
                         </tr>
                     </#list>

@@ -13,6 +13,7 @@ import ru.ivmiit.web.utils.TaskUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,12 @@ public class ExecutableServiceImpl implements ExecutableService {
     @Transactional
     public List<ExecutableDto> getSpecialCompare() {
         return ExecutableDto.from(executableRepository.findAllByType(ExecutableType.compare));
+    }
+
+    @Override
+    @Transactional
+    public List<ExecutableDto> getSpecialCompile() {
+        return ExecutableDto.from(executableRepository.findAllByType(ExecutableType.compile));
     }
 
     @Override
@@ -99,6 +106,13 @@ public class ExecutableServiceImpl implements ExecutableService {
         Executable executable = executableRepository.getOne(id);
         response.setContentType(executable.getFileType());
         response.setHeader("Content-Disposition", "attachment; filename=\"" + executable.getFileName() + "\"");
-        response.getOutputStream().write(executable.getFileData().getBytes());
+        response.getOutputStream().write(executable.getFileData());
+    }
+
+    @Override
+    @Transactional
+    public byte[] getExecutableData(Long id) {
+        Executable executable = executableRepository.getOne(id);
+        return executable.getFileData();
     }
 }

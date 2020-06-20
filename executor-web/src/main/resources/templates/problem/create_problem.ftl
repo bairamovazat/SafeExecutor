@@ -87,10 +87,10 @@
                     <select id="inputSpecialRun" name="specialRun"
                             class="form-control custom-select form-control">
                         <option value="">-- default run script --</option>
-                        <#if specialRun??>
-                            <#list specialRun as runExecutable>
+                        <#if model.specialRun??>
+                            <#list model.specialRun as runExecutable>
                                 <option value="${runExecutable.id}"
-                                        ${model.problem???then((model.problem.specialRun==runExecutable)?then("selected",""),"")}>
+                                        ${model.problem???then((model.problem.specialRun==runExecutable.id)?then("selected",""),"")}>
                                     ${runExecutable.name}
                                 </option>
                             </#list>
@@ -103,10 +103,10 @@
                     <select id="inputSpecialCompare" name="specialCompare"
                             class="form-control custom-select form-control">
                         <option value="">-- default compare script --</option>
-                        <#if specialCompare??>
-                            <#list specialCompare as compareExecutable>
+                        <#if model.specialCompare??>
+                            <#list model.specialCompare as compareExecutable>
                                 <option value="${compareExecutable.id}"
-                                        ${model.problem???then((model.problem.specialCompare==compareExecutable)?then("selected",""),"")}>
+                                        ${model.problem???then((model.problem.specialCompare==compareExecutable.id)?then("selected",""),"")}>
                                     ${compareExecutable.name}
                                 </option>
                             </#list>

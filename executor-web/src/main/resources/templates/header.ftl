@@ -23,6 +23,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<@spring.url "/"/>executable/all">Executable</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="<@spring.url "/"/>language/all">Языки</a>
+                    </li>
                 </#if>
 
                 <li class="nav-item">

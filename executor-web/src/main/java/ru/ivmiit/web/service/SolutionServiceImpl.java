@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ivmiit.web.model.Submission;
 import ru.ivmiit.web.model.autorization.User;
+import ru.ivmiit.web.transfer.SubmissionDto;
 import ru.ivmiit.web.utils.TaskUtils;
 
 import java.util.List;
@@ -26,15 +27,16 @@ public class SolutionServiceImpl implements SolutionService {
 
     @Override
     @Transactional
-    public List<Submission> getTasks(int page) {
+    public List<SubmissionDto> getTasks(int page) {
         return getTasks(page, defaultElementsInPage);
     }
 
+
     @Override
     @Transactional
-    public List<Submission> getTasks(int page, int count) {
+    public List<SubmissionDto> getTasks(int page, int count) {
         User user = authenticationService.getCurrentUser();
-        return submissionRepository.findAllByAuthorOrderByIdDesc(user, PageRequest.of(page, count)).getContent();
+        return SubmissionDto.from(submissionRepository.findAllByAuthorOrderByIdDesc(user, PageRequest.of(page, count)).getContent());
     }
 
     @Override

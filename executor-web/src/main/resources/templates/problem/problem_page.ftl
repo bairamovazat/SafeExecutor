@@ -70,23 +70,37 @@
                                         </#if>
                                     </div>
                                     <input name="id" style="display: none;" value="${model.problem.id}">
+
+                                    <div class="form-group">
+                                        <label class="" for="inputLanguage">Выберите язык программирования</label>
+                                        <select id="inputLanguage" name="languageId"
+                                                class="form-control custom-select form-control" onchange="updateCodeBlock()">
+                                            <#if model.languages??>
+                                                <#list model.languages as language>
+                                                    <option value="${language.id}">
+                                                        ${language.name}
+                                                    </option>
+                                                </#list>
+                                            </#if>
+                                        </select>
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="inputText">Код</label>
                                         <textarea id="codeImport" name="codeImport" rows="1" class="form-control"
-                                                  maxlength="2048">${"import java.util.ArrayList;"}</textarea>
+                                                  maxlength="2048"></textarea>
                                         <textarea id="programHeader" class="code_not_resize form-control" content=""
                                                   rows="1"
-                                                  disabled>${"public class Program {"}</textarea>
+                                                  disabled></textarea>
                                         <textarea id="code" style="overflow:hidden" name="code" rows="3"
                                                   class="form-control"
                                                   maxlength="2048"
-                                                  content="">${"    public static void main(String[] args){\n\n    }"}</textarea>
+                                                  content=""></textarea>
                                         <textarea id="programFooter" class="code_not_resize form-control" content=""
                                                   rows="1"
-                                                  disabled>${"}"}</textarea>
-                                        <input style="display: none;" name="fileName"
-                                               value="${model.problem???then(model.problem.fileName???then(model.problem.fileName, "Program.java"), "Program.java")}">
-                                        <input id="source" style="display: none" name="source">
+                                                  disabled></textarea>
+                                        <input id="fileName" style="display: none;" name="fileName" value="Program.java">
+                                        <textarea id="source" style="display: none" name="source"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" type="submit" value="Отправить">
@@ -115,6 +129,59 @@
         let source = document.getElementById("source");
         source.value = codeImport.value + "\n" + programHeader.value + "\n" + code.value + "\n" + programFooter.value + "\n"
     }
+
+    function getSelectedLanguageName() {
+        let language = document.getElementById("inputLanguage");
+        return language.options[language.selectedIndex].text;
+    }
+
+    function setJavaLanguage() {
+        document.getElementById("codeImport").value = "import java.util.ArrayList;";
+        document.getElementById("programHeader").value = "public class Program {";
+        document.getElementById("code").value = "    public static void main(String[] args){\n\n    }";
+        document.getElementById("programFooter").value = "\"}\"";
+        document.getElementById("fileName").value = "Program.java";
+        document.getElementById("source").value = "";
+
+        document.getElementById("codeImport").style.display = "block";
+        document.getElementById("programHeader").style.display = "block";
+        document.getElementById("code").style.display = "block";
+        document.getElementById("programFooter").style.display = "block";
+        document.getElementById("fileName").style.display = "none";
+        document.getElementById("source").style.display = "none";
+
+    }
+
+    function setPythonLanguage() {
+        document.getElementById("codeImport").value = "";
+        document.getElementById("programHeader").value = "";
+        document.getElementById("code").value = "";
+        document.getElementById("programFooter").value = "";
+        document.getElementById("fileName").value = "Program.py";
+        document.getElementById("source").value = "";
+
+        document.getElementById("codeImport").style.display = "none";
+        document.getElementById("programHeader").style.display = "none";
+        document.getElementById("code").style.display = "block";
+        document.getElementById("programFooter").style.display = "none";
+        document.getElementById("fileName").style.display = "none";
+        document.getElementById("source").style.display = "none";
+    }
+
+    function updateCodeBlock() {
+        let languageName = getSelectedLanguageName();
+
+        if(languageName.toLowerCase() === "java") {
+            setJavaLanguage();
+        } else if( languageName.toLowerCase() === "python 3") {
+            setPythonLanguage();
+        } else {
+            setPythonLanguage();
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", updateCodeBlock);
+
 </script>
 <style>
     .code_not_resize {

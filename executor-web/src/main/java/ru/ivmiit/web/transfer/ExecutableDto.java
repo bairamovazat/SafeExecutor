@@ -40,8 +40,10 @@ public class ExecutableDto {
     public static ExecutableDto from(Executable executable) {
         return ExecutableDto.builder()
                 .id(executable.getId())
-                .md5sum(executable.getMd5sum())
                 .name(executable.getName())
+                .fileName(executable.getFileName())
+                .fileType(executable.getFileType())
+                .md5sum(executable.getMd5sum())
                 .description(executable.getDescription())
                 .type(executable.getType())
                 .build();

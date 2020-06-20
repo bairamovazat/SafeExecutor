@@ -27,6 +27,10 @@ public class SubmissionDto {
 
     private Long languageId;
 
+    private String languageName;
+
+    private String problemName;
+
     private Long authorId;
 
     public static SubmissionDto from(Submission submission) {
@@ -36,6 +40,8 @@ public class SubmissionDto {
                 .source(submission.getSource())
                 .status(submission.getStatus())
                 .languageId(submission.getLanguage().getId())
+                .languageName(submission.getLanguage().getName())
+                .problemName(submission.getProblem().getName())
                 .authorId(submission.getAuthor().getId())
                 .build();
     }

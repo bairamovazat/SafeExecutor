@@ -1,5 +1,6 @@
 package ru.ivmiit.web.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.ivmiit.domjudge.connector.utils.Base64Utils;
 import ru.ivmiit.web.model.ExecutableType;
 import ru.ivmiit.web.service.AuthenticationService;
 import ru.ivmiit.web.service.ExecutableService;
@@ -21,6 +23,7 @@ import ru.ivmiit.web.validators.ExecutableDtoValidator;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,6 +47,7 @@ public class ExecutableController {
         binder.addValidators(executableDtoValidator);
     }
 
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("create")
     public String getExecutablesPage(@ModelAttribute("model") ModelMap model,
@@ -96,5 +100,12 @@ public class ExecutableController {
         } catch (Exception e) {
             log.error("Write file to response error", e);
         }
+    }
+
+    @GetMapping("file-base64")
+    @ResponseBody
+    public String getFIle(@RequestParam("executableId") Long id, HttpServletResponse response) {
+        String base64 = new String(Base64.getUrlEncoder().encode(executableService.getExecutableData(id)));
+        return objectMapper.convertValue(base64, String.class);
     }
 }
